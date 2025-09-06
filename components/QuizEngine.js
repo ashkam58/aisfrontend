@@ -32,43 +32,43 @@ export default function QuizEngine() {
   };
 
   return (
-    <div className="grid md:grid-cols-2 gap-6">
-      <div className="rounded-2xl border border-slate-200 p-4 bg-white/80">
-        <h2 className="font-semibold mb-2">Pick a Quiz</h2>
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+      <div className="rounded-2xl border border-slate-200 p-3 sm:p-4 bg-white/80">
+        <h2 className="font-semibold mb-2 text-sm sm:text-base">Pick a Quiz</h2>
         <div className="flex gap-2 flex-wrap">
           {quizzes.map(q => (
             <button key={q.id} onClick={() => chooseQuiz(q.id)}
-              className={`px-3 py-1.5 rounded-xl border ${sel?.id===q.id?'bg-emerald-600 text-white border-emerald-700':'bg-white hover:bg-slate-50'}`}>
+              className={`px-2 sm:px-3 py-1.5 rounded-xl border text-xs sm:text-sm ${sel?.id===q.id?'bg-emerald-600 text-white border-emerald-700':'bg-white hover:bg-slate-50'}`}>
               {q.title}
             </button>
           ))}
         </div>
-        {!quizzes.length && <p className="text-sm text-slate-500 mt-2">Start the server to load quizzes.</p>}
-        <div className="mt-4 text-sm text-slate-600">
-          <p>API: <code>{API}/api/quizzes</code></p>
+        {!quizzes.length && <p className="text-xs sm:text-sm text-slate-500 mt-2">Start the server to load quizzes.</p>}
+        <div className="mt-4 text-xs sm:text-sm text-slate-600">
+          <p>API: <code className="break-all">{API}/api/quizzes</code></p>
         </div>
       </div>
 
-      <div className="rounded-2xl border border-slate-200 p-4 bg-white/80">
-        {!sel && <p className="text-slate-600">Select a quiz to begin.</p>}
+      <div className="rounded-2xl border border-slate-200 p-3 sm:p-4 bg-white/80">
+        {!sel && <p className="text-slate-600 text-sm sm:text-base">Select a quiz to begin.</p>}
         {sel && (
-          <div className="space-y-4">
+          <div className="space-y-3 sm:space-y-4">
             <div className="flex items-center justify-between">
-              <h3 className="font-semibold">{sel.title}</h3>
-              <div className="text-sm">Score: <span className="font-bold">{score}</span> / {sel.questions.length}</div>
+              <h3 className="font-semibold text-sm sm:text-base">{sel.title}</h3>
+              <div className="text-xs sm:text-sm">Score: <span className="font-bold">{score}</span> / {sel.questions.length}</div>
             </div>
             {sel.questions.map((q, i) => (
-              <div key={i} className="rounded-xl border p-3">
-                <div className="font-medium">{i+1}. {q.q}</div>
-                <div className="grid grid-cols-2 gap-2 mt-2">
+              <div key={i} className="rounded-xl border p-2 sm:p-3">
+                <div className="font-medium text-sm sm:text-base">{i+1}. {q.q}</div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
                   {q.choices.map((c, idx) => {
                     const chosen = answered[i] === idx;
                     const correct = idx === q.answer;
-                    let cls = 'px-3 py-2 rounded-lg border bg-white hover:bg-slate-50';
+                    let cls = 'px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg border bg-white hover:bg-slate-50 text-xs sm:text-sm text-left';
                     if (answered[i] != null) {
-                      if (chosen && correct) cls = 'px-3 py-2 rounded-lg border bg-emerald-100 border-emerald-300';
-                      else if (chosen && !correct) cls = 'px-3 py-2 rounded-lg border bg-rose-100 border-rose-300';
-                      else if (correct) cls = 'px-3 py-2 rounded-lg border bg-emerald-50 border-emerald-200';
+                      if (chosen && correct) cls = 'px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg border bg-emerald-100 border-emerald-300 text-xs sm:text-sm text-left';
+                      else if (chosen && !correct) cls = 'px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg border bg-rose-100 border-rose-300 text-xs sm:text-sm text-left';
+                      else if (correct) cls = 'px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg border bg-emerald-50 border-emerald-200 text-xs sm:text-sm text-left';
                     }
                     return (
                       <button key={idx} className={cls} onClick={() => mark(i, idx)}>

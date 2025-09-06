@@ -295,15 +295,14 @@ export default function EnhancedWhiteboard() {
     }
   };
 
-  return (
     <div className="rounded-2xl border border-purple-200 shadow bg-white/90">
       {/* Enhanced Toolbar */}
-      <div className="p-4 border-b border-purple-200 bg-gradient-to-r from-purple-50 to-blue-50">
-        <div className="flex flex-wrap items-center gap-3 mb-3">
-          <h3 className="font-cartoon text-lg text-purple-700">🎨 Teaching Whiteboard</h3>
+      <div className="p-3 sm:p-4 border-b border-purple-200 bg-gradient-to-r from-purple-50 to-blue-50">
+        <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-3">
+          <h3 className="font-cartoon text-base sm:text-lg text-purple-700">🎨 Teaching Whiteboard</h3>
           <button
             onClick={() => setPresentationMode(!presentationMode)}
-            className={`px-3 py-1.5 rounded-lg text-sm font-medium ${
+            className={`px-2 sm:px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium ${
               presentationMode 
                 ? 'bg-green-600 text-white' 
                 : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
@@ -317,7 +316,7 @@ export default function EnhancedWhiteboard() {
           <>
             {/* Drawing Tools */}
             <div className="flex flex-wrap items-center gap-2 mb-3">
-              <span className="text-sm font-medium text-purple-700">Tools:</span>
+              <span className="text-xs sm:text-sm font-medium text-purple-700">Tools:</span>
               {[
                 { id: 'pen', label: '✏️ Pen', desc: 'Free drawing' },
                 { id: 'eraser', label: '🧽 Eraser', desc: 'Erase content' },
@@ -330,7 +329,7 @@ export default function EnhancedWhiteboard() {
                   key={id}
                   title={desc}
                   onClick={() => setTool(id)}
-                  className={`px-2 py-1 rounded text-sm ${
+                  className={`px-1.5 sm:px-2 py-1 rounded text-xs sm:text-sm ${
                     tool === id 
                       ? 'bg-purple-600 text-white' 
                       : 'bg-white border border-purple-200 hover:bg-purple-50'
@@ -342,9 +341,9 @@ export default function EnhancedWhiteboard() {
             </div>
 
             {/* Color and Size */}
-            <div className="flex flex-wrap items-center gap-4 mb-3">
+            <div className="flex flex-wrap items-center gap-2 sm:gap-4 mb-3">
               <div className="flex items-center gap-2">
-                <label className="text-sm font-medium text-purple-700">Color:</label>
+                <label className="text-xs sm:text-sm font-medium text-purple-700">Color:</label>
                 <input 
                   type="color" 
                   value={color} 
@@ -364,27 +363,27 @@ export default function EnhancedWhiteboard() {
               </div>
               
               <div className="flex items-center gap-2">
-                <label className="text-sm font-medium text-purple-700">Size:</label>
+                <label className="text-xs sm:text-sm font-medium text-purple-700">Size:</label>
                 <input 
                   type="range" 
                   min="1" 
                   max="20" 
                   value={size} 
                   onChange={(e) => setSize(parseInt(e.target.value))}
-                  className="w-20"
+                  className="w-16 sm:w-20"
                 />
-                <span className="text-sm text-purple-600">{size}px</span>
+                <span className="text-xs sm:text-sm text-purple-600">{size}px</span>
               </div>
             </div>
 
             {/* Templates */}
             <div className="flex flex-wrap items-center gap-2 mb-3">
-              <span className="text-sm font-medium text-purple-700">Templates:</span>
+              <span className="text-xs sm:text-sm font-medium text-purple-700">Templates:</span>
               {Object.entries(TEMPLATES).map(([key, template]) => (
                 <button
                   key={key}
                   onClick={() => addTemplate(key)}
-                  className="px-2 py-1 rounded text-sm bg-blue-100 hover:bg-blue-200 border border-blue-300"
+                  className="px-1.5 sm:px-2 py-1 rounded text-xs sm:text-sm bg-blue-100 hover:bg-blue-200 border border-blue-300"
                   title={`Insert ${template.name}`}
                 >
                   {template.name}
@@ -396,13 +395,13 @@ export default function EnhancedWhiteboard() {
             <div className="flex flex-wrap items-center gap-2">
               <button
                 onClick={addText}
-                className="px-3 py-1.5 rounded bg-green-100 hover:bg-green-200 border border-green-300 text-sm"
+                className="px-2 sm:px-3 py-1.5 rounded bg-green-100 hover:bg-green-200 border border-green-300 text-xs sm:text-sm"
               >
                 📝 Add Text
               </button>
               <button
                 onClick={() => setShowGrid(!showGrid)}
-                className={`px-3 py-1.5 rounded text-sm ${
+                className={`px-2 sm:px-3 py-1.5 rounded text-xs sm:text-sm ${
                   showGrid 
                     ? 'bg-yellow-200 border-yellow-400' 
                     : 'bg-gray-100 border-gray-300 hover:bg-gray-200'
@@ -412,7 +411,7 @@ export default function EnhancedWhiteboard() {
               </button>
               <button
                 onClick={clearBoard}
-                className="px-3 py-1.5 rounded bg-rose-100 hover:bg-rose-200 border border-rose-300 text-sm"
+                className="px-2 sm:px-3 py-1.5 rounded bg-rose-100 hover:bg-rose-200 border border-rose-300 text-xs sm:text-sm"
               >
                 🗑️ Clear All
               </button>
@@ -422,10 +421,10 @@ export default function EnhancedWhiteboard() {
       </div>
 
       {/* Canvas */}
-      <div className="p-4">
+      <div className="p-2 sm:p-4 overflow-x-auto">
         <Stage
-          width={Math.min(800, typeof window !== 'undefined' ? window.innerWidth - 64 : 800)}
-          height={500}
+          width={Math.min(800, typeof window !== 'undefined' ? window.innerWidth - 32 : 800)}
+          height={Math.min(500, typeof window !== 'undefined' ? window.innerHeight * 0.6 : 500)}
           onMouseDown={handleMouseDown}
           onMousemove={handleMouseMove}
           onMouseup={handleMouseUp}

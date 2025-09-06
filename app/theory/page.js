@@ -212,19 +212,19 @@ export default function TheoryPage() {
 
   return (
     <>
-    <div className="relative z-10 max-w-4xl mx-auto mt-12 bg-white/90 rounded-cartoon shadow-lg p-8 backdrop-blur">
-    <h1 className="text-4xl font-cartoon text-purple-800 mb-1 text-center">📘 Learning Theory</h1>
-    <p className="text-lg text-purple-600 mb-8 text-center">Choose your grade and topic to start learning! ✨</p>
+    <div className="relative z-10 max-w-4xl mx-auto mt-6 sm:mt-8 md:mt-12 bg-white/90 rounded-cartoon shadow-lg p-4 sm:p-6 md:p-8 backdrop-blur">
+    <h1 className="text-2xl sm:text-3xl md:text-4xl font-cartoon text-purple-800 mb-1 text-center">📘 Learning Theory</h1>
+    <p className="text-sm sm:text-base md:text-lg text-purple-600 mb-6 sm:mb-8 text-center">Choose your grade and topic to start learning! ✨</p>
         
         {!selectedGrade ? (
           /* Grade Selection */
           <div>
-      <h2 className="text-2xl font-cartoon text-purple-700 mb-6 text-center">Select Your Grade 🎓</h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+      <h2 className="text-xl sm:text-2xl font-cartoon text-purple-700 mb-4 sm:mb-6 text-center">Select Your Grade 🎓</h2>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
               {[1,2,3,4,5,6].map(grade => (
                 <button
                   key={grade}
-          className="bg-gradient-to-br from-purple-100 to-blue-100 hover:from-purple-200 hover:to-blue-200 text-purple-700 font-cartoon text-xl p-6 rounded-cartoon transition shadow-md"
+          className="bg-gradient-to-br from-purple-100 to-blue-100 hover:from-purple-200 hover:to-blue-200 text-purple-700 font-cartoon text-lg sm:text-xl p-4 sm:p-6 rounded-cartoon transition shadow-md"
                   onClick={() => setSelectedGrade(grade)}
                 >
           Grade {grade} 🎈
@@ -235,24 +235,24 @@ export default function TheoryPage() {
         ) : !selectedTopic ? (
           /* Topic Selection */
           <div>
-            <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-cartoon text-purple-700">Grade {selectedGrade} Topics ✏️</h2>
+            <div className="flex flex-col sm:flex-row items-center justify-between mb-4 sm:mb-6 gap-3">
+        <h2 className="text-xl sm:text-2xl font-cartoon text-purple-700">Grade {selectedGrade} Topics ✏️</h2>
               <button
-                className="bg-purple-500 text-white px-4 py-2 rounded-cartoon font-cartoon hover:bg-purple-600"
+                className="bg-purple-500 text-white px-3 sm:px-4 py-2 rounded-cartoon font-cartoon hover:bg-purple-600 text-sm sm:text-base"
                 onClick={() => setSelectedGrade(null)}
               >
                 ← Back to Grades
               </button>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4">
               {theoryTopics[selectedGrade].map(topic => (
                 <div
                   key={topic.name}
-          className="bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-cartoon shadow-md hover:shadow-lg transition cursor-pointer border border-purple-200"
+          className="bg-gradient-to-br from-purple-50 to-pink-50 p-4 sm:p-6 rounded-cartoon shadow-md hover:shadow-lg transition cursor-pointer border border-purple-200"
                   onClick={() => setSelectedTopic(topic)}
                 >
-          <h3 className="text-xl font-cartoon text-purple-700 mb-2">{topic.name} 📚</h3>
-          <p className="text-purple-600">{topic.description}</p>
+          <h3 className="text-lg sm:text-xl font-cartoon text-purple-700 mb-2">{topic.name} 📚</h3>
+          <p className="text-purple-600 text-sm sm:text-base">{topic.description}</p>
                 </div>
               ))}
             </div>
@@ -260,23 +260,23 @@ export default function TheoryPage() {
         ) : (
           /* Topic Content */
           <div>
-            <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-cartoon text-purple-700">Grade {selectedGrade}: {selectedTopic.name} 🔍</h2>
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 sm:mb-6 gap-3">
+        <h2 className="text-lg sm:text-xl md:text-2xl font-cartoon text-purple-700">Grade {selectedGrade}: {selectedTopic.name} 🔍</h2>
               <button
-                className="bg-purple-500 text-white px-4 py-2 rounded-cartoon font-cartoon hover:bg-purple-600"
+                className="bg-purple-500 text-white px-3 sm:px-4 py-2 rounded-cartoon font-cartoon hover:bg-purple-600 text-sm sm:text-base"
                 onClick={() => setSelectedTopic(null)}
               >
                 ← Back to Topics
               </button>
             </div>
             <div className="mb-4 p-3 bg-blue-50 rounded-cartoon border border-blue-200">
-              <div className="flex items-center justify-between">
-                <p className="text-blue-700 text-sm">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+                <p className="text-blue-700 text-xs sm:text-sm">
                   📚 <strong>Learn & Draw:</strong> Study the topic and click the 🎨 button to open the drawing canvas!
                 </p>
                 <button
                   onClick={() => setCanvasWidth(50)}
-                  className="ml-4 px-3 py-1 bg-blue-500 text-white text-sm rounded hover:bg-blue-600 transition-colors"
+                  className="px-2 sm:px-3 py-1 bg-blue-500 text-white text-xs sm:text-sm rounded hover:bg-blue-600 transition-colors whitespace-nowrap"
                 >
                   ↔️ Reset Layout
                 </button>

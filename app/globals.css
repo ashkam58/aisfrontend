@@ -19,3 +19,52 @@ html, body {
   background-position: 0 0, 20px 20px;
   background-size: 40px 40px;
 }
+
+/* Responsive utilities */
+@layer utilities {
+  .text-responsive {
+    @apply text-sm sm:text-base md:text-lg;
+  }
+  
+  .heading-responsive {
+    @apply text-xl sm:text-2xl md:text-3xl lg:text-4xl;
+  }
+  
+  .padding-responsive {
+    @apply p-2 sm:p-4 md:p-6;
+  }
+  
+  .margin-responsive {
+    @apply m-2 sm:m-4 md:m-6;
+  }
+  
+  .gap-responsive {
+    @apply gap-2 sm:gap-4 md:gap-6;
+  }
+}
+
+/* Mobile-first canvas container */
+.canvas-container {
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Touch-friendly buttons */
+@media (max-width: 640px) {
+  button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Prevent horizontal scroll on mobile */
+body {
+  overflow-x: hidden;
+}
+
+/* Ensure content doesn't get too narrow */
+.min-touch-target {
+  min-height: 44px;
+  min-width: 44px;
+}

@@ -29,19 +29,19 @@ export default function GamesPage() {
 
   return (
     <>
-  <div className="relative z-10 max-w-4xl mx-auto mt-12 bg-white/90 rounded-cartoon shadow-lg p-8 backdrop-blur">
-    <div className="text-center mb-6">
-      <h1 className="text-3xl md:text-4xl font-cartoon text-purple-800">🎮 Game Arcade</h1>
-      <p className="text-purple-600">Playful challenges to sharpen your skills!</p>
+  <div className="relative z-10 max-w-4xl mx-auto mt-6 sm:mt-8 md:mt-12 bg-white/90 rounded-cartoon shadow-lg p-4 sm:p-6 md:p-8 backdrop-blur">
+    <div className="text-center mb-4 sm:mb-6">
+      <h1 className="text-2xl sm:text-3xl md:text-4xl font-cartoon text-purple-800">🎮 Game Arcade</h1>
+      <p className="text-purple-600 text-sm sm:text-base">Playful challenges to sharpen your skills!</p>
     </div>
         {!selectedGrade ? (
           <div>
-    <h2 className="text-2xl font-cartoon text-purple-700 mb-6 text-center">Select Your Grade ✨</h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+    <h2 className="text-xl sm:text-2xl font-cartoon text-purple-700 mb-4 sm:mb-6 text-center">Select Your Grade ✨</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
               {availableGrades.map((grade) => (
                 <button
                   key={grade}
-      className="bg-gradient-to-br from-purple-100 to-pink-100 hover:from-purple-200 hover:to-pink-200 text-purple-700 font-cartoon text-xl p-6 rounded-cartoon transition shadow-md"
+      className="bg-gradient-to-br from-purple-100 to-pink-100 hover:from-purple-200 hover:to-pink-200 text-purple-700 font-cartoon text-lg sm:text-xl p-4 sm:p-6 rounded-cartoon transition shadow-md"
                   onClick={() => setSelectedGrade(grade)}
                 >
       Grade {grade} 🎈
@@ -51,34 +51,38 @@ export default function GamesPage() {
           </div>
         ) : !selectedGame ? (
           <div>
-    <h2 className="text-2xl font-cartoon text-purple-700 mb-6 text-center">Grade {selectedGrade} Games 🎯</h2>
+    <h2 className="text-xl sm:text-2xl font-cartoon text-purple-700 mb-4 sm:mb-6 text-center">Grade {selectedGrade} Games 🎯</h2>
             {Array.isArray(gamesTopics[selectedGrade]) && gamesTopics[selectedGrade].length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4">
                 {gamesTopics[selectedGrade].map((game) => (
                   <div
                     key={game.name}
-        className="bg-gradient-to-br from-purple-50 to-blue-50 p-6 rounded-cartoon shadow-md hover:shadow-lg transition cursor-pointer border border-purple-200"
+        className="bg-gradient-to-br from-purple-50 to-blue-50 p-4 sm:p-6 rounded-cartoon shadow-md hover:shadow-lg transition cursor-pointer border border-purple-200"
                     onClick={() => setSelectedGame(game)}
                   >
-        <h3 className="text-xl font-cartoon text-purple-700 mb-2">{game.name} 🕹️</h3>
-        <p className="text-purple-600">{game.description}</p>
+        <h3 className="text-lg sm:text-xl font-cartoon text-purple-700 mb-2">{game.name} 🕹️</h3>
+        <p className="text-purple-600 text-sm sm:text-base">{game.description}</p>
                   </div>
                 ))}
               </div>
             ) : (
-              <div className="text-center text-purple-600">No games available for Grade {selectedGrade} yet.</div>
+              <div className="text-center text-purple-600 text-sm sm:text-base">No games available for Grade {selectedGrade} yet.</div>
             )}
           </div>
         ) : (
           <div>
-    <h2 className="text-2xl font-cartoon text-purple-700 mb-6 text-center">{selectedGame.name} 🧠</h2>
-            {selectedGame.component}
-            <button
-      className="bg-purple-500 text-white px-4 py-2 rounded-cartoon font-cartoon hover:bg-purple-600"
-              onClick={() => setSelectedGame(null)}
-            >
-      ← Back to Games
-            </button>
+    <h2 className="text-xl sm:text-2xl font-cartoon text-purple-700 mb-4 sm:mb-6 text-center">{selectedGame.name} 🧠</h2>
+            <div className="mb-4">
+              {selectedGame.component}
+            </div>
+            <div className="text-center">
+              <button
+        className="bg-purple-500 text-white px-3 sm:px-4 py-2 rounded-cartoon font-cartoon hover:bg-purple-600 text-sm sm:text-base"
+                onClick={() => setSelectedGame(null)}
+              >
+        ← Back to Games
+              </button>
+            </div>
           </div>
         )}
       </div>
