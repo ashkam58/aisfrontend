@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+  height: 100%;
+  font-family: 'Comic Sans MS', 'Comic Sans', 'Chalkboard SE', cursive;
+  background: #FFE066;
+  background-image: url('/assets/cartoon-clouds-bg.svg');
+  background-repeat: repeat;
+  color: #5BC0EB;
+  border-radius: 2rem;
+}
+
+.mandala-bg {
+  background-image:
+    radial-gradient(#fde68a 1px, transparent 1px),
+    radial-gradient(#bfdbfe 1px, transparent 1px);
+  background-position: 0 0, 20px 20px;
+  background-size: 40px 40px;
+}
