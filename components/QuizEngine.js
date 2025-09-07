@@ -52,7 +52,7 @@ export default function QuizEngine() {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
-      <div className="rounded-2xl border border-slate-200 p-3 sm:p-4 bg-white/80">
+      <div className="rounded-2xl border border-slate-200 p-3 sm:p-4 bg-white">
         <h2 className="font-semibold mb-2 text-sm sm:text-base">Pick a Quiz</h2>
         <div className="flex gap-2 flex-wrap">
           {quizzes.map(q => (
@@ -68,7 +68,7 @@ export default function QuizEngine() {
         </div>
       </div>
 
-      <div className="rounded-2xl border border-slate-200 p-3 sm:p-4 bg-white/80">
+      <div className="rounded-2xl border border-slate-200 p-3 sm:p-4 bg-white">
         {!sel && <p className="text-slate-600 text-sm sm:text-base">Select a quiz to begin.</p>}
         {sel && (
           <div className="space-y-3 sm:space-y-4">

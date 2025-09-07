@@ -11,6 +11,7 @@ const games = [
   { name: 'Word Builder', description: 'Build words from letters', grades: [2,3,4,5,6], path: '/games/words' },
   { name: 'Shape Sorter', description: 'Sort shapes by properties', grades: [1,2,3], path: '/games/shapes' },
   { name: 'Fraction Fun', description: 'Learn fractions visually', grades: [3,4,5,6], path: '/games/fractions' },
+  { name: 'JMC Survival Kit', description: 'Olympiad math formulas and mini-tools', grades: [6,7,8,9], path: '/jmc' },
 ];
 
 const gamesTopics = {
@@ -29,7 +30,7 @@ export default function GamesPage() {
 
   return (
     <>
-  <div className="relative z-10 max-w-4xl mx-auto mt-6 sm:mt-8 md:mt-12 bg-white/90 rounded-cartoon shadow-lg p-4 sm:p-6 md:p-8 backdrop-blur">
+  <div className="relative z-10 max-w-4xl mx-auto mt-6 sm:mt-8 md:mt-12 bg-white rounded-cartoon shadow-lg p-4 sm:p-6 md:p-8">
     <div className="text-center mb-4 sm:mb-6">
       <h1 className="text-2xl sm:text-3xl md:text-4xl font-cartoon text-purple-800">🎮 Game Arcade</h1>
       <p className="text-purple-600 text-sm sm:text-base">Playful challenges to sharpen your skills!</p>

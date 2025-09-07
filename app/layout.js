@@ -1,6 +1,6 @@
 import './globals.css';
 import Link from 'next/link';
-import MasterfulMandalaBackground from '../components/MasterfulMandalaBackground';
+import SimpleBackground from '../components/SimpleBackground';
 
 export const metadata = {
   title: 'Ultimate EdTech – Ashkam Studio',
@@ -11,7 +11,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="min-h-screen font-cartoon bg-white text-purple-700 rounded-cartoon">
-        <MasterfulMandalaBackground />
+        <SimpleBackground />
         <header className="w-full py-4 sm:py-6 md:py-8 flex flex-col items-center justify-center bg-gradient-to-r from-pink-100 via-purple-100 to-blue-100 rounded-cartoon shadow-lg mb-4 sm:mb-6 md:mb-8 border border-purple-200 mx-2 sm:mx-4">
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-purple-700 drop-shadow-lg text-center px-2">
             ✨ Intelligent Studios Ultimate ✨

@@ -25,7 +25,7 @@ export default function WhiteboardPage() {
       <EnhancedWhiteboard />
 
       {/* Dimensional Mandala Art */}
-      <div className="rounded-2xl border border-purple-200 p-4 bg-white/80">
+      <div className="rounded-2xl border border-purple-200 p-4 bg-white">
         <h2 className="text-2xl font-cartoon text-purple-700 mb-2">� Dimensional Mandala Kaleidoscope</h2>
         <p className="text-sm text-purple-600 mb-4">
           Experience fourth-dimensional art through interactive fractal patterns, particle systems, and dynamic mathematics.

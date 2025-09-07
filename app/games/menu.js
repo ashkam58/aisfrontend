@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import MandalaBackground from '../../components/MandalaBackground';
+import SimpleBackground from '../../components/SimpleBackground';
 
 const games = [
   { name: 'Memory Match', path: '/games/memory', grades: [1,2,3,4] },
@@ -12,8 +12,8 @@ export default function GamesMenu() {
   const [selectedGrade, setSelectedGrade] = React.useState('all');
   return (
     <>
-      <MandalaBackground />
-      <div className="relative z-10 max-w-3xl mx-auto mt-12 bg-white/80 rounded-cartoon shadow-lg p-8 backdrop-blur">
+      <SimpleBackground />
+      <div className="relative z-10 max-w-3xl mx-auto mt-12 bg-white rounded-cartoon shadow-lg p-8">
         <h2 className="text-3xl font-cartoon text-purple-700 mb-6 text-center">Choose Your Game</h2>
         <div className="flex justify-center gap-4 mb-8">
           <button className={`px-4 py-2 rounded-cartoon font-bold ${selectedGrade==='all'?'bg-purple-300':'bg-purple-100'}`} onClick={()=>setSelectedGrade('all')}>All Grades</button>

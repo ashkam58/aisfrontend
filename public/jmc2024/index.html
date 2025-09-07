@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JMC 2024 Survival Kit</title>
+<style>
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu;max-width:900px;margin:2rem auto;padding:0 1rem;line-height:1.6}
+  h1,h2,h3{margin-top:1.2em} code,kbd{background:#f4f4f8;padding:0.15rem 0.35rem;border-radius:6px}
+  .card{border:1px solid #e6e6f0;border-radius:14px;padding:1rem;margin:1rem 0;box-shadow:0 1px 8px rgba(0,0,0,0.04)}
+  .grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+  .btn{display:inline-block;padding:0.6rem 1rem;border-radius:10px;border:1px solid #d0d0e0;text-decoration:none}
+  .muted{color:#555}
+</style>
+</head>
+<body>
+  <h1>JMC 2024 — Formula + Theory Survival Kit</h1>
+  <p class="muted">Pocket spellbook: crisp formulas, tiny proofs, playful mnemonics.</p>
+
+  <div class="card">
+    <h2>Grid Paths Mini-Tool</h2>
+    <p>Compute shortest paths from (0,0) to (a,b): <code>C(a+b, a)</code>.</p>
+    <div class="grid">
+      <div>
+        <label>a: <input id="a" type="number" min="0" value="4"></label>
+      </div>
+      <div>
+        <label>b: <input id="b" type="number" min="0" value="3"></label>
+      </div>
+      <div>
+        <button class="btn" onclick="calc()">Compute</button>
+      </div>
+      <div>Result: <strong id="res">—</strong></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Random Micro-Drill</h2>
+    <p>Click to pick one of the 10 micro-drills.</p>
+    <button class="btn" onclick="pick()">Pick a Drill</button>
+    <div id="drill" class="muted">—</div>
+  </div>
+
+<script>
+function fact(n){let r=1n;for(let i=2n;i<=n;i++)r*=i;return r}
+function comb(n,k){if(k<0||k>n)return 0n;k=BigInt(k);n=BigInt(n);return fact(n)/(fact(k)*fact(n-k))}
+function calc(){
+  const a = Math.max(0, parseInt(document.getElementById('a').value||'0',10));
+  const b = Math.max(0, parseInt(document.getElementById('b').value||'0',10));
+  const value = comb(a+b, a);
+  document.getElementById('res').textContent = value.toString();
+}
+const drills = [
+"Smallest n with n ≡ 2 (mod 3) and n ≡ 2 (mod 4).",
+"How many shortest paths from (0,0) to (4,3)?",
+"Regular 12-gon: interior/exterior angle?",
+"A rhombus has diagonals 10 and 24. Area?",
+"Product of five consecutive integers: largest power of 5 dividing it?",
+"Bag 6R,4B,5G. Probability of not blue?",
+"|A|=30, |B|=22, |A∪B|=40. Find |A∩B|.",
+"Sum of integers 35 to 93 inclusive.",
+"Right triangle 5-12-13: height to hypotenuse?",
+"Two liars on Tuesdays? Use parity to deduce the day."
+];
+function pick(){
+  document.getElementById('drill').textContent = drills[Math.floor(Math.random()*drills.length)];
+}
+</script>
+</body>
+</html>
