@@ -1,4 +1,5 @@
 import React from "react";
+import TypingGame from "../../components/TypingGame";
 
 export default function JmcSurvivalKit() {
   const zipUrl = "/jmc2024_survival_kit.zip"; // Place the zip at your public/ folder or route it via API
@@ -89,6 +90,12 @@ export default function JmcSurvivalKit() {
             How many sides can a polygon made from unit squares have? <br/>
             <a href="/jmc/polygon-sides" className="text-blue-600 hover:underline font-semibold">Read the full explanation &rarr;</a>
           </p>
+        </Card>
+      </section>
+
+      <section className="mt-8">
+        <Card title="Typing Game">
+          <TypingGame />
         </Card>
       </section>
     </main>

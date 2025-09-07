@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import ParallelLinesGame from '../../components/ParallelLinesGame';
 import SubtractionAdventure from '../../components/SubtractionAdventure';
+import TypingGame from '../../components/TypingGame';
 
 const games = [
   { name: 'Memory Match', description: 'Match pairs of cards', grades: [1,2,3,4], path: '/games/memory' },
@@ -20,6 +21,7 @@ const gamesTopics = {
   ],
   6: [
     { name: 'Parallel Lines Game', description: 'Identify parallel lines and solve challenges!', component: <ParallelLinesGame /> },
+    { name: 'Typing Game', description: 'Test your speed and accuracy by typing math words!', component: <TypingGame /> },
   ],
 };
 
