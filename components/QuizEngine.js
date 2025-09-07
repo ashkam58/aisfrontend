@@ -10,10 +10,29 @@ export default function QuizEngine() {
   const [answered, setAnswered] = useState({}); // qIndex -> choiceIndex
 
   useEffect(() => {
-    fetch(`${API}/api/quizzes`)
-      .then(r => r.json())
-      .then(data => setQuizzes(data.quizzes || []))
-      .catch(() => setQuizzes([]));
+    console.log('Fetching quizzes from:', `${API}/api/quizzes`);
+    fetch(`${API}/api/quizzes`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      mode: 'cors'
+    })
+      .then(r => {
+        console.log('Response status:', r.status);
+        if (!r.ok) {
+          throw new Error(`HTTP error! status: ${r.status}`);
+        }
+        return r.json();
+      })
+      .then(data => {
+        console.log('Quiz data received:', data);
+        setQuizzes(data.quizzes || []);
+      })
+      .catch(error => {
+        console.error('Error fetching quizzes:', error);
+        setQuizzes([]);
+      });
   }, []);
 
   const chooseQuiz = (id) => {

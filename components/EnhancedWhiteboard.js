@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import io from 'socket.io-client';
-import { Stage, Layer, Line, Circle, Rect, Text, Group, Arrow } from 'react-konva';
+import { Stage, Layer, Line, Circle, Rect, Text, Arrow } from 'react-konva';
 
 const SERVER_URL = process.env.NEXT_PUBLIC_SOCKET_URL || 'http://localhost:4000';
 const ROOM_ID = 'classroom-1';
@@ -295,6 +295,7 @@ export default function EnhancedWhiteboard() {
     }
   };
 
+  return (
     <div className="rounded-2xl border border-purple-200 shadow bg-white/90">
       {/* Enhanced Toolbar */}
       <div className="p-3 sm:p-4 border-b border-purple-200 bg-gradient-to-r from-purple-50 to-blue-50">
