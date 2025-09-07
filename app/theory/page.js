@@ -3,6 +3,7 @@ import { useState, useCallback, useEffect, useRef } from 'react';
 import InteractiveSubtraction from '../../components/InteractiveSubtraction';
 import ParallelLinesTheory from '../../components/ParallelLinesTheory';
 import DrawingCanvas from '../../components/DrawingCanvas';
+import Link from 'next/link';
 
 const theoryTopics = {
   1: [
@@ -41,6 +42,21 @@ const theoryTopics = {
     { name: 'Basic Algebra', description: 'Solve for unknowns', component: 'algebra' },
     { name: 'Parallel Lines', description: 'Learn about parallel lines and transversals', component: 'parallel' },
     { name: 'Statistics', description: 'Analyze data sets', component: 'statistics' },
+  ],
+  7: [
+    { name: 'Advanced Algebra', description: 'Solve complex equations', component: 'advancedalgebra' },
+    { name: 'Geometry Proofs', description: 'Learn geometric reasoning', component: 'proofs' },
+    { name: 'JMC Survival Kit', description: 'Olympiad math formulas and mini-tools', component: 'jmc' },
+  ],
+  8: [
+    { name: 'Functions', description: 'Understand mathematical functions', component: 'functions' },
+    { name: 'Quadratic Equations', description: 'Solve quadratic problems', component: 'quadratics' },
+    { name: 'JMC Survival Kit', description: 'Olympiad math formulas and mini-tools', component: 'jmc' },
+  ],
+  9: [
+    { name: 'Polynomials', description: 'Work with polynomial expressions', component: 'polynomials' },
+    { name: 'Trigonometry Basics', description: 'Introduction to trig functions', component: 'trigonometry' },
+    { name: 'JMC Survival Kit', description: 'Olympiad math formulas and mini-tools', component: 'jmc' },
   ],
 };
 
@@ -134,6 +150,45 @@ export default function TheoryPage() {
       topicComponent = <InteractiveSubtraction />;
     } else if (selectedTopic?.component === 'parallel') {
       topicComponent = <ParallelLinesTheory />;
+    } else if (selectedTopic?.component === 'jmc') {
+      topicComponent = (
+        <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-cartoon p-6 text-center">
+          <h4 className="text-2xl font-cartoon text-purple-700 mb-4">🏆 JMC 2024 Survival Kit</h4>
+          <p className="text-purple-600 mb-6">Complete Olympiad math toolkit with formulas, mini-tools, and practice drills!</p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Link 
+              href="/jmc" 
+              className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-xl font-bold transition-colors shadow-lg"
+            >
+              🚀 Open Full Survival Kit
+            </Link>
+            <Link 
+              href="/jmc2024/index.html" 
+              className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-xl font-bold transition-colors shadow-lg"
+            >
+              🧮 Mini Calculator Tool
+            </Link>
+          </div>
+          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-left">
+            <div className="bg-white/80 rounded-lg p-4">
+              <h5 className="font-bold text-purple-700 mb-2">📐 Geometry</h5>
+              <p className="text-sm text-purple-600">Interior angles, area formulas, Pythagoras</p>
+            </div>
+            <div className="bg-white/80 rounded-lg p-4">
+              <h5 className="font-bold text-purple-700 mb-2">🔢 Numbers</h5>
+              <p className="text-sm text-purple-600">BODMAS, parity, remainders, divisibility</p>
+            </div>
+            <div className="bg-white/80 rounded-lg p-4">
+              <h5 className="font-bold text-purple-700 mb-2">🎯 Combinatorics</h5>
+              <p className="text-sm text-purple-600">Grid paths, probability, inclusion-exclusion</p>
+            </div>
+            <div className="bg-white/80 rounded-lg p-4">
+              <h5 className="font-bold text-purple-700 mb-2">🧠 Logic</h5>
+              <p className="text-sm text-purple-600">Knights/Knaves, word problems, ratios</p>
+            </div>
+          </div>
+        </div>
+      );
     } else {
       topicComponent = (
         <div className="bg-purple-50 rounded-cartoon p-6 text-center">
@@ -221,7 +276,7 @@ export default function TheoryPage() {
           <div>
       <h2 className="text-xl sm:text-2xl font-cartoon text-purple-700 mb-4 sm:mb-6 text-center">Select Your Grade 🎓</h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
-              {[1,2,3,4,5,6].map(grade => (
+              {[1,2,3,4,5,6,7,8,9].map(grade => (
                 <button
                   key={grade}
           className="bg-gradient-to-br from-purple-100 to-blue-100 hover:from-purple-200 hover:to-blue-200 text-purple-700 font-cartoon text-lg sm:text-xl p-4 sm:p-6 rounded-cartoon transition shadow-md"

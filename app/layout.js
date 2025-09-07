@@ -28,6 +28,7 @@ export default function RootLayout({ children }) {
               <Link href="/quiz" className="hover:underline text-purple-700 whitespace-nowrap">🧩 Quiz</Link>
               <Link href="/games" className="hover:underline text-purple-800 font-bold whitespace-nowrap">🎮 Games</Link>
               <Link href="/theory" className="hover:underline text-purple-900 font-bold whitespace-nowrap">📘 Theory</Link>
+              <Link href="/jmc" className="hover:underline text-blue-600 font-bold whitespace-nowrap">🏆 JMC</Link>
             </div>
           </div>
         </nav>
