@@ -82,6 +82,15 @@ export default function JmcSurvivalKit() {
           </ol>
         </Card>
       </section>
+
+      <section className="mt-8">
+        <Card title="Polygon Sides — Olympiad Explainer">
+          <p>
+            How many sides can a polygon made from unit squares have? <br/>
+            <a href="/jmc/polygon-sides" className="text-blue-600 hover:underline font-semibold">Read the full explanation &rarr;</a>
+          </p>
+        </Card>
+      </section>
     </main>
   );
 }
