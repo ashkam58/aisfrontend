@@ -17,8 +17,30 @@ module.exports = {
         cartoon: '2rem',
       },
       fontFamily: {
-        cartoon: ['Comic Sans MS', 'Comic Sans', 'Chalkboard SE', 'cursive'],
-        display: ['Comic Sans MS', 'Comic Sans', 'Chalkboard SE', 'cursive'],
+        cartoon: [
+          '-apple-system',
+          'BlinkMacSystemFont',
+          'Segoe UI',
+          'Roboto',
+          'Helvetica',
+          'Arial',
+          'sans-serif',
+          'Apple Color Emoji',
+          'Segoe UI Emoji',
+          'Segoe UI Symbol'
+        ],
+        display: [
+          '-apple-system',
+          'BlinkMacSystemFont',
+          'Segoe UI',
+          'Roboto',
+          'Helvetica',
+          'Arial',
+          'sans-serif',
+          'Apple Color Emoji',
+          'Segoe UI Emoji',
+          'Segoe UI Symbol'
+        ],
       },
       backgroundImage: {
         cartoonClouds: "url('/assets/cartoon-clouds-bg.svg')",

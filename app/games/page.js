@@ -21,22 +21,47 @@ const gamesTopics = {
   ],
   6: [
     { name: 'Parallel Lines Game', description: 'Identify parallel lines and solve challenges!', component: <ParallelLinesGame /> },
-    { name: 'Typing Game', description: 'Test your speed and accuracy by typing math words!', component: <TypingGame /> },
   ],
 };
 
 export default function GamesPage() {
   const [selectedGrade, setSelectedGrade] = useState(null);
   const [selectedGame, setSelectedGame] = useState(null);
+  const [showTypingGame, setShowTypingGame] = useState(false);
   const availableGrades = Object.keys(gamesTopics).map(Number);
 
   return (
     <>
-  <div className="relative z-10 max-w-4xl mx-auto mt-6 sm:mt-8 md:mt-12 bg-white rounded-cartoon shadow-lg p-4 sm:p-6 md:p-8">
-    <div className="text-center mb-4 sm:mb-6">
-      <h1 className="text-2xl sm:text-3xl md:text-4xl font-cartoon text-purple-800">🎮 Game Arcade</h1>
-      <p className="text-purple-600 text-sm sm:text-base">Playful challenges to sharpen your skills!</p>
-    </div>
+      <div className="relative z-10 max-w-4xl mx-auto mt-6 sm:mt-8 md:mt-12 bg-white rounded-cartoon shadow-lg p-4 sm:p-6 md:p-8">
+        <div className="text-center mb-4 sm:mb-6">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-cartoon text-purple-800">🎮 Game Arcade</h1>
+          <p className="text-purple-600 text-sm sm:text-base">Playful challenges to sharpen your skills!</p>
+        </div>
+        {/* Button to open Typing Game */}
+        {!showTypingGame && (
+          <div className="mb-8 text-center">
+            <button
+              className="bg-blue-500 text-white px-6 py-3 rounded-cartoon font-cartoon text-lg shadow hover:bg-blue-600 transition"
+              onClick={() => setShowTypingGame(true)}
+            >
+              Play Typing Game 📝
+            </button>
+          </div>
+        )}
+        {showTypingGame && (
+          <div className="mb-8">
+            <h2 className="text-xl font-cartoon text-purple-700 mb-2 text-center">Typing Game</h2>
+            <TypingGame />
+            <div className="text-center mt-4">
+              <button
+                className="bg-purple-500 text-white px-4 py-2 rounded-cartoon font-cartoon hover:bg-purple-600 text-sm"
+                onClick={() => setShowTypingGame(false)}
+              >
+                ← Back to Game Arcade
+              </button>
+            </div>
+          </div>
+        )}
         {!selectedGrade ? (
           <div>
     <h2 className="text-xl sm:text-2xl font-cartoon text-purple-700 mb-4 sm:mb-6 text-center">Select Your Grade ✨</h2>

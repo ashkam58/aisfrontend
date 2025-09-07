@@ -92,12 +92,6 @@ export default function JmcSurvivalKit() {
           </p>
         </Card>
       </section>
-
-      <section className="mt-8">
-        <Card title="Typing Game">
-          <TypingGame />
-        </Card>
-      </section>
     </main>
   );
 }
