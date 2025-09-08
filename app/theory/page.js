@@ -3,7 +3,9 @@ import { useState, useCallback, useEffect, useRef } from 'react';
 import InteractiveSubtraction from '../../components/InteractiveSubtraction';
 import ParallelLinesTheory from '../../components/ParallelLinesTheory';
 import DrawingCanvas from '../../components/DrawingCanvas';
+import KartMath from '../../components/KartMath';
 import Link from 'next/link';
+import DoesXSatisfyEquationTheory from '../../theory/DoesXSatisfyEquation';
 
 const theoryTopics = {
   1: [
@@ -40,6 +42,7 @@ const theoryTopics = {
     { name: 'Ratios & Proportions', description: 'Compare quantities', component: 'ratios' },
     { name: 'Integers', description: 'Work with negative numbers', component: 'integers' },
     { name: 'Basic Algebra', description: 'Solve for unknowns', component: 'algebra' },
+    { name: 'Does x Satisfy an Equation?', description: 'Learn how to check if x satisfies an equation', component: 'doesXSatisfyEquation' },
     { name: 'Parallel Lines', description: 'Learn about parallel lines and transversals', component: 'parallel' },
     { name: 'Statistics', description: 'Analyze data sets', component: 'statistics' },
   ],
@@ -150,6 +153,8 @@ export default function TheoryPage() {
       topicComponent = <InteractiveSubtraction />;
     } else if (selectedTopic?.component === 'parallel') {
       topicComponent = <ParallelLinesTheory />;
+    } else if (selectedTopic?.component === 'kartmath') {
+      topicComponent = <KartMath />;
     } else if (selectedTopic?.component === 'jmc') {
       topicComponent = (
         <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-cartoon p-6 text-center">
@@ -189,6 +194,8 @@ export default function TheoryPage() {
           </div>
         </div>
       );
+    } else if (selectedTopic?.component === 'doesXSatisfyEquation') {
+      topicComponent = <DoesXSatisfyEquationTheory />;
     } else {
       topicComponent = (
         <div className="bg-purple-50 rounded-cartoon p-6 text-center">

@@ -429,6 +429,9 @@ export default function EnhancedWhiteboard() {
           onMouseDown={handleMouseDown}
           onMousemove={handleMouseMove}
           onMouseup={handleMouseUp}
+          onTouchStart={handleMouseDown}
+          onTouchMove={handleMouseMove}
+          onTouchEnd={handleMouseUp}
           ref={stageRef}
           className="border border-gray-200 rounded bg-white cursor-crosshair"
         >

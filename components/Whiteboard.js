@@ -68,6 +68,9 @@ export default function Whiteboard() {
           onMouseDown={handleMouseDown}
           onMousemove={handleMouseMove}
           onMouseup={handleMouseUp}
+          onTouchStart={handleMouseDown}
+          onTouchMove={handleMouseMove}
+          onTouchEnd={handleMouseUp}
           ref={stageRef}
         >
           <Layer>

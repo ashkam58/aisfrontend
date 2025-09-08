@@ -79,7 +79,6 @@ export default function SubtractionAdventure() {
   const [showResult, setShowResult] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
   const [showCelebration, setShowCelebration] = useState(false);
-  const [draggedItem, setDraggedItem] = useState(null);
   const [gameStarted, setGameStarted] = useState(false);
 
   const theme = THEMES[currentTheme];
@@ -106,13 +105,12 @@ export default function SubtractionAdventure() {
     setShowResult(true);
 
     if (correct) {
-      setScore(prev => prev + (level * 10));
-      setStreak(prev => prev + 1);
+      setScore((prev) => prev + level * 10);
+      setStreak((prev) => prev + 1);
 
-      // Level up every 3 correct answers
       if ((streak + 1) % 3 === 0 && level < 5) {
         setTimeout(() => {
-          setLevel(prev => prev + 1);
+          setLevel((prev) => prev + 1);
           setShowCelebration(true);
           setTimeout(() => setShowCelebration(false), 2000);
         }, 1000);
@@ -130,22 +128,6 @@ export default function SubtractionAdventure() {
         setSelectedAnswer(null);
       }, 2000);
     }
-  };
-
-  const handleDragStart = (e, number) => {
-    setDraggedItem(number);
-    e.dataTransfer.setData('text/plain', number);
-  };
-
-  const handleDrop = (e) => {
-    e.preventDefault();
-    const number = parseInt(e.dataTransfer.getData('text/plain'));
-    setSelectedAnswer(number);
-    checkAnswer(number);
-  };
-
-  const handleDragOver = (e) => {
-    e.preventDefault();
   };
 
   const generateAnswerOptions = () => {
@@ -288,29 +270,12 @@ export default function SubtractionAdventure() {
               </div>
             ))}
           </div>
-
-          {/* Equation Breakdown */}
-          <div className="text-center space-y-2">
-            <div className="flex justify-center items-center gap-4 text-2xl">
-              <span className="bg-blue-100 px-3 py-1 rounded-lg">
-                {currentProblem.start || '?'}
-              </span>
-              <span className="text-purple-600">-</span>
-              <span className="bg-red-100 px-3 py-1 rounded-lg">
-                {currentProblem.subtract || '?'}
-              </span>
-              <span className="text-purple-600">=</span>
-              <span className="bg-green-100 px-3 py-1 rounded-lg">
-                {currentProblem.result || '?'}
-              </span>
-            </div>
-          </div>
         </div>
 
         {/* Answer Section */}
         <div className="bg-white/90 rounded-2xl p-6 shadow-lg">
           <h3 className="text-xl font-cartoon text-purple-700 mb-4 text-center">
-            {gameMode === 'regular' ? 'What\'s the Answer?' : 'Find the Missing Number!'}
+            {gameMode === 'regular' ? "What's the Answer?" : 'Find the Missing Number!'}
           </h3>
 
           {showResult ? (
@@ -326,44 +291,16 @@ export default function SubtractionAdventure() {
               </p>
             </div>
           ) : (
-            <div className="space-y-4">
-              <div className="text-center mb-4">
-                <div className="text-2xl font-cartoon text-purple-800">
-                  Drag the correct number!
-                </div>
-              </div>
-
-              {/* Drop Zone */}
-              <div
-                className="border-4 border-dashed border-purple-300 rounded-2xl p-8 text-center bg-purple-50 hover:bg-purple-100 transition-colors min-h-[120px] flex items-center justify-center"
-                onDrop={handleDrop}
-                onDragOver={handleDragOver}
-              >
-                {selectedAnswer ? (
-                  <div className="text-4xl font-cartoon text-purple-800">
-                    {selectedAnswer}
-                  </div>
-                ) : (
-                  <div className="text-purple-400">
-                    <div className="text-4xl mb-2">🎯</div>
-                    <div className="text-sm">Drop answer here!</div>
-                  </div>
-                )}
-              </div>
-
-              {/* Answer Options */}
-              <div className="grid grid-cols-2 gap-3">
-                {generateAnswerOptions().map((num) => (
-                  <div
-                    key={num}
-                    draggable
-                    onDragStart={(e) => handleDragStart(e, num)}
-                    className="bg-gradient-to-br from-yellow-200 to-orange-200 p-4 rounded-xl text-center cursor-move hover:scale-105 transition-all shadow-md"
-                  >
-                    <div className="text-3xl font-cartoon text-orange-800">{num}</div>
-                  </div>
-                ))}
-              </div>
+            <div className="grid grid-cols-2 gap-3">
+              {generateAnswerOptions().map((num) => (
+                <button
+                  key={num}
+                  onClick={() => checkAnswer(num)}
+                  className="bg-gradient-to-br from-yellow-200 to-orange-200 p-4 rounded-xl text-center cursor-pointer hover:scale-105 transition-all shadow-md"
+                >
+                  <div className="text-3xl font-cartoon text-orange-800">{num}</div>
+                </button>
+              ))}
             </div>
           )}
         </div>
