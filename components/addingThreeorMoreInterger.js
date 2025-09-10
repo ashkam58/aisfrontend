@@ -220,28 +220,54 @@ const Gauge = ({ value }) => {
   );
 };
 
-const NumberLine
-= ({ addends, current = 0 }) => {
-  const total = sum(addends);
-  const min = Math.min(0, current, total, ...addends.reduce((acc, v, i) => {
-    const prev = (acc[i - 1] ?? 0) + (addends[i - 1] ?? 0);
-    return [...acc, prev + v];
-  }, []));
-  const max = Math.max(0, current, total, ...addends.reduce((acc, v, i) => {
-    const prev = (acc[i - 1] ?? 0) + (addends[i - 1] ?? 0);
-    return [...acc, prev + v];
-  }, []));
-  const span = Math.max(10, Math.abs(max - min));
-  const ticks = [];
-  for (let t = Math.ceil(min); t <= Math.floor(max); t++) ticks.push(t);
+const NumberLine = ({ addends }) => {
+  const points = useMemo(() => {
+    const pts = [0];
+    addends.reduce((acc, v) => {
+      const next = acc + v;
+      pts.push(next);
+      return next;
+    }, 0);
+    return pts;
+  }, [addends]);
 
-  // build cumulative steps
-  const points = [0];
-  addends.reduce((acc, v) => {
-    const next = acc + v;
-    points.push(next);
-    return next;
-  }, 0);
+  const [min, max] = useMemo(() => {
+    const allValues = [...points];
+    let minVal = Math.min(...allValues);
+    let maxVal = Math.max(...allValues);
+    const range = Math.max(10, maxVal - minVal);
+    // Add 10% padding
+    minVal -= range * 0.1;
+    maxVal += range * 0.1;
+    return [minVal, maxVal];
+  }, [points]);
+
+  const ticks = useMemo(() => {
+    const range = max - min;
+    if (range <= 0) return [min];
+    const numTicks = 10;
+
+    const rawStep = range / numTicks;
+    const magnitude = Math.pow(10, Math.floor(Math.log10(rawStep)));
+    const a = rawStep / magnitude;
+
+    let niceStep;
+    if (a < 1.5) niceStep = 1 * magnitude;
+    else if (a < 3) niceStep = 2 * magnitude;
+    else if (a < 7) niceStep = 5 * magnitude;
+    else niceStep = 10 * magnitude;
+
+    const start = Math.floor(min / niceStep) * niceStep;
+    const end = Math.ceil(max / niceStep) * niceStep;
+    
+    const tickValues = [];
+    for (let t = start; t <= end; t += niceStep) {
+        tickValues.push(t);
+    }
+    return tickValues;
+  }, [min, max]);
+
+  const span = max - min;
 
   return (
     <div className="w-full">
@@ -249,9 +275,9 @@ const NumberLine
         <div className="absolute left-0 right-0 top-1/2 h-0.5 bg-slate-300" />
         {ticks.map((t) => (
           <div key={t} className="absolute -translate-x-1/2 text-xs text-slate-600"
-               style={{ left: `${((t - min) / (span)) * 100}%`, top: "50%" }}>
+               style={{ left: `${((t - min) / span) * 100}%`, top: "50%" }}>
             <div className="w-0.5 h-3 bg-slate-400 -translate-y-1/2" />
-            <div className="mt-1">{t}</div>
+            <div className="mt-1">{Math.round(t)}</div>
           </div>
         ))}
         <AnimatePresence>
@@ -263,7 +289,7 @@ const NumberLine
               exit={{ opacity: 0 }}
               transition={{ delay: i * 0.06 }}
               className="absolute -translate-x-1/2 -translate-y-1/2"
-              style={{ left: `${((p - min) / (span)) * 100}%`, top: "50%" }}
+              style={{ left: `${((p - min) / span) * 100}%`, top: "50%" }}
             >
               <div className="w-3 h-3 rounded-full bg-emerald-500 shadow" />
               {i < points.length - 1 && (

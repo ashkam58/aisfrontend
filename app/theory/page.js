@@ -2,11 +2,12 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
 import InteractiveSubtraction from '../../components/InteractiveSubtraction';
 import ParallelLinesTheory from '../../components/ParallelLinesTheory';
-import DrawingCanvas from '../../components/DrawingCanvas';
+import DrawingOverlay from '../../components/DrawingOverlay';
 import KartMath from '../../components/KartMath';
 import Link from 'next/link';
 import DoesXSatisfyEquationTheory from '../../theory/DoesXSatisfyEquation';
 import AddingThreeOrMoreIntegersTheory from '../../components/AddingThreeOrMoreIntegersTheory';
+import TwoDFiguresLab from '../../components/twoDimensionalFigures';
 
 const theoryTopics = {
   1: [
@@ -48,6 +49,7 @@ const theoryTopics = {
     { name: 'Statistics', description: 'Analyze data sets', component: 'statistics' },
   ],
   7: [
+    { name: 'Two-dimensional Figures', description: 'Theory and interactive practice on polygons, triangles, quadrilaterals, circles', component: 'twoDimFigures' },
     { name: 'Adding Three or More Integers', description: 'Master adding multiple integers with properties and strategies', component: 'addingIntegers' },
     { name: 'Advanced Algebra', description: 'Solve complex equations', component: 'advancedalgebra' },
     { name: 'Geometry Proofs', description: 'Learn geometric reasoning', component: 'proofs' },
@@ -68,85 +70,8 @@ const theoryTopics = {
 export default function TheoryPage() {
   const [selectedGrade, setSelectedGrade] = useState(null);
   const [selectedTopic, setSelectedTopic] = useState(null);
-  const [canvasWidth, setCanvasWidth] = useState(50); // Percentage of container width
-  const [isResizing, setIsResizing] = useState(false);
-  const [showCanvas, setShowCanvas] = useState(false);
+  const [showDrawingOverlay, setShowDrawingOverlay] = useState(false);
   const containerRef = useRef(null);
-
-  // Resize functionality
-  const handleMouseDown = (e) => {
-    setIsResizing(true);
-    e.preventDefault();
-  };
-
-  const handleMouseMove = useCallback((e) => {
-    if (!isResizing || !containerRef.current) return;
-
-    const container = containerRef.current;
-    const rect = container.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const percentage = (x / rect.width) * 100;
-
-    // Constrain between 30% and 70%
-    const constrainedPercentage = Math.max(30, Math.min(70, percentage));
-    setCanvasWidth(constrainedPercentage);
-  }, [isResizing]);
-
-  // Touch support for resize
-  const handleTouchStart = (e) => {
-    setIsResizing(true);
-    e.preventDefault();
-  };
-
-  const handleTouchMove = useCallback((e) => {
-    if (!isResizing || !containerRef.current) return;
-
-    const touch = e.touches[0];
-    const container = containerRef.current;
-    const rect = container.getBoundingClientRect();
-    const x = touch.clientX - rect.left;
-    const percentage = (x / rect.width) * 100;
-
-    // Constrain between 30% and 70%
-    const constrainedPercentage = Math.max(30, Math.min(70, percentage));
-    setCanvasWidth(constrainedPercentage);
-  }, [isResizing]);
-
-  const handleMouseUp = useCallback(() => {
-    setIsResizing(false);
-  }, []);
-
-  const handleTouchEnd = useCallback(() => {
-    setIsResizing(false);
-  }, []);
-
-  // Add global mouse and touch event listeners for resize
-  useEffect(() => {
-    if (isResizing) {
-      document.addEventListener('mousemove', handleMouseMove);
-      document.addEventListener('mouseup', handleMouseUp);
-      document.addEventListener('touchmove', handleTouchMove);
-      document.addEventListener('touchend', handleTouchEnd);
-      document.body.style.cursor = 'col-resize';
-      document.body.style.userSelect = 'none';
-    } else {
-      document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseup', handleMouseUp);
-      document.removeEventListener('touchmove', handleTouchMove);
-      document.removeEventListener('touchend', handleTouchEnd);
-      document.body.style.cursor = '';
-      document.body.style.userSelect = '';
-    }
-
-    return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseup', handleMouseUp);
-      document.removeEventListener('touchmove', handleTouchMove);
-      document.removeEventListener('touchend', handleTouchEnd);
-      document.body.style.cursor = '';
-      document.body.style.userSelect = '';
-    };
-  }, [isResizing, handleMouseMove, handleMouseUp, handleTouchMove, handleTouchEnd]);
 
   const renderTopicContent = () => {
     let topicComponent = null;
@@ -159,6 +84,8 @@ export default function TheoryPage() {
       topicComponent = <KartMath />;
     } else if (selectedTopic?.component === 'addingIntegers') {
       topicComponent = <AddingThreeOrMoreIntegersTheory />;
+    } else if (selectedTopic?.component === 'twoDimFigures') {
+      topicComponent = <TwoDFiguresLab />;
     } else if (selectedTopic?.component === 'jmc') {
       topicComponent = (
         <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-cartoon p-6 text-center">
@@ -212,66 +139,26 @@ export default function TheoryPage() {
 
     return (
       <div className="relative">
-        {/* Sticky Canvas Toggle Button */}
+        {/* Sticky Drawing Toggle Button */}
         <button
-          onClick={() => setShowCanvas(!showCanvas)}
+          onClick={() => setShowDrawingOverlay(true)}
           className="fixed bottom-6 right-6 z-50 bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
-          title={showCanvas ? 'Hide Drawing Canvas' : 'Show Drawing Canvas'}
+          title="Open Drawing Overlay"
         >
-          {showCanvas ? '✕' : '🎨'}
+          🎨
         </button>
 
         {/* Main Content */}
-        <div
-          ref={containerRef}
-          className={`transition-all duration-500 ease-in-out ${
-            showCanvas ? 'flex gap-4' : 'block'
-          }`}
-          style={{ cursor: isResizing ? 'col-resize' : 'default' }}
-        >
-        {/* Topic Content */}
-        <div
-          className={`transition-all duration-500 ease-in-out ${
-            showCanvas ? '' : 'w-full'
-          }`}
-          style={showCanvas ? { width: `${100 - canvasWidth}%` } : {}}
-        >
+        <div className="w-full">
           {topicComponent}
         </div>
 
-        {/* Canvas Section - Only show when toggled */}
-        {showCanvas && (
-          <>
-            {/* Resize Handle */}
-            <div
-              className={`relative w-1 bg-gradient-to-b from-purple-300 to-blue-300 rounded-full cursor-col-resize transition-all duration-200 hover:w-2 group ${
-                isResizing ? 'w-2 bg-purple-500' : ''
-              }`}
-              onMouseDown={handleMouseDown}
-              onTouchStart={handleTouchStart}
-              style={{ cursor: 'col-resize', touchAction: 'none' }}
-            >
-              {/* Resize indicator */}
-              <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                {Math.round(canvasWidth)}% Canvas
-              </div>
-              <div className="absolute inset-y-0 left-1/2 transform -translate-x-1/2 w-px bg-white/50"></div>
-            </div>
-
-            {/* Drawing Area */}
-            <div
-              className="transition-all duration-500 ease-in-out"
-              style={{ width: `${canvasWidth}%` }}
-            >
-              <DrawingCanvas
-                topicName={selectedTopic?.name}
-                grade={selectedGrade}
-                width={canvasWidth}
-              />
-            </div>
-          </>
-        )}
-        </div>
+        {/* Drawing Overlay */}
+        <DrawingOverlay
+          isOpen={showDrawingOverlay}
+          onClose={() => setShowDrawingOverlay(false)}
+          topicName={selectedTopic?.name}
+        />
       </div>
     );
   };
@@ -336,17 +223,9 @@ export default function TheoryPage() {
               </button>
             </div>
             <div className="mb-4 p-3 bg-blue-50 rounded-cartoon border border-blue-200">
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
-                <p className="text-blue-700 text-xs sm:text-sm">
-                  📚 <strong>Learn & Draw:</strong> Study the topic and click the 🎨 button to open the drawing canvas!
-                </p>
-                <button
-                  onClick={() => setCanvasWidth(50)}
-                  className="px-2 sm:px-3 py-1 bg-blue-500 text-white text-xs sm:text-sm rounded hover:bg-blue-600 transition-colors whitespace-nowrap"
-                >
-                  ↔️ Reset Layout
-                </button>
-              </div>
+              <p className="text-blue-700 text-xs sm:text-sm">
+                📚 <strong>Learn & Draw:</strong> Study the topic and click the 🎨 button to open the drawing overlay for taking notes!
+              </p>
             </div>
             {renderTopicContent()}
           </div>

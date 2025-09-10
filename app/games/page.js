@@ -158,9 +158,17 @@ export default function GamesPage() {
 					</div>
 				) : !selectedGame ? (
 					<div>
-						<h2 className="text-xl sm:text-2xl font-cartoon text-purple-700 mb-4 sm:mb-6 text-center">
-							Grade {selectedGrade} Games 🎯
-						</h2>
+						<div className="flex items-center justify-between mb-4 sm:mb-6">
+							<h2 className="text-xl sm:text-2xl font-cartoon text-purple-700 text-center flex-1">
+								Grade {selectedGrade} Games 🎯
+							</h2>
+							<button
+								className="bg-purple-500 text-white px-3 sm:px-4 py-2 rounded-cartoon font-cartoon hover:bg-purple-600 text-sm sm:text-base"
+								onClick={() => setSelectedGrade(null)}
+							>
+								← Back to Grades
+							</button>
+						</div>
 						{Array.isArray(gamesTopics[selectedGrade]) &&
 						gamesTopics[selectedGrade].length > 0 ? (
 							<div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4">
@@ -191,12 +199,21 @@ export default function GamesPage() {
 							{selectedGame.name} 🧠
 						</h2>
 						<div className="mb-4">{selectedGame.component}</div>
-						<div className="text-center">
+						<div className="flex flex-col sm:flex-row justify-center items-center gap-3">
 							<button
 								className="bg-purple-500 text-white px-3 sm:px-4 py-2 rounded-cartoon font-cartoon hover:bg-purple-600 text-sm sm:text-base"
 								onClick={() => setSelectedGame(null)}
 							>
 								← Back to Games
+							</button>
+							<button
+								className="bg-blue-500 text-white px-3 sm:px-4 py-2 rounded-cartoon font-cartoon hover:bg-blue-600 text-sm sm:text-base"
+								onClick={() => {
+									setSelectedGame(null);
+									setSelectedGrade(null);
+								}}
+							>
+								🎓 Back to Grade Selection
 							</button>
 						</div>
 					</div>
