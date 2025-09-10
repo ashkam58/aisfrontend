@@ -366,7 +366,33 @@ const QUIZ_DATA = {
     questions: [
       { q: "40 furry = 50 fit; 45 fit = 54 friendly. How many friendly weigh same as 50 furry?", choices: ["60", "72", "75", "80"], answer: 2, hint: "Use fit to link furry→friendly.", emoji: "⚖️" }
     ]
-  }
+  },
+
+  "grade6-integers": {
+    id: "grade6-integers",
+    title: "➕➖✖️➗ Integer Operations",
+    grade: "Grade 6",
+    subject: "Math",
+    character: "🤓",
+    color: "bg-gradient-to-br from-indigo-200 to-purple-300",
+    questions: [
+      { q: "Add integers using counters: What is the sum of +3 and -5?", choices: ["-2", "+2", "+8", "-8"], answer: 0, hint: "Using counters, +3 and -5 combine to -2.", emoji: "➕" },
+      { q: "Add integers using number lines: What is +4 + (-6)?", choices: ["-2", "+2", "+10", "-10"], answer: 0, hint: "On a number line, move 4 units right and 6 units left to reach -2.", emoji: "➕" },
+      { q: "Add integers: What is -7 + (-3)?", choices: ["-10", "+10", "-4", "+4"], answer: 0, hint: "Adding two negatives results in -10.", emoji: "➕" },
+      { q: "Subtract integers using counters: What is +5 - (+3)?", choices: ["+2", "-2", "+8", "-8"], answer: 0, hint: "Using counters, +5 minus +3 leaves +2.", emoji: "➖" },
+      { q: "Subtract integers using number lines: What is -2 - (-4)?", choices: ["+2", "-2", "+6", "-6"], answer: 0, hint: "On a number line, move 2 units left and 4 units right to reach +2.", emoji: "➖" },
+      { q: "Subtract integers: What is +6 - (-3)?", choices: ["+9", "-9", "+3", "-3"], answer: 0, hint: "Subtracting a negative is equivalent to addition: +6 + 3 = +9.", emoji: "➖" },
+      { q: "Add and subtract integers: find the sign: What is the sign of -4 + (+2)?", choices: ["Negative", "Positive", "Zero", "Undefined"], answer: 0, hint: "The result is -2, which is negative.", emoji: "➕➖" },
+      { q: "Add and subtract integers: word problems: If you owe $5 and earn $3, what is your balance?", choices: ["-2", "+2", "+8", "-8"], answer: 0, hint: "Owing $5 and earning $3 results in a balance of -2.", emoji: "💰" },
+      { q: "Add and subtract integers: input/output tables: If input is -3 and output is +5, what is the operation?", choices: ["Addition", "Subtraction", "Multiplication", "Division"], answer: 0, hint: "Adding +8 to -3 results in +5.", emoji: "📊" },
+      { q: "Add three or more integers: What is -2 + (+3) + (-4)?", choices: ["-3", "+3", "+7", "-7"], answer: 0, hint: "Adding -2, +3, and -4 results in -3.", emoji: "➕" },
+      { q: "Understand multiplying by a negative integer using a number line: What is -3 × 2?", choices: ["-6", "+6", "-9", "+9"], answer: 0, hint: "On a number line, moving 3 units left twice results in -6.", emoji: "✖️" },
+      { q: "Multiply integers: find the sign: What is the sign of -4 × (+2)?", choices: ["Negative", "Positive", "Zero", "Undefined"], answer: 0, hint: "The result is -8, which is negative.", emoji: "✖️" },
+      { q: "Multiply integers: What is -7 × (-3)?", choices: ["+21", "-21", "+10", "-10"], answer: 0, hint: "Multiplying two negatives results in +21.", emoji: "✖️" },
+      { q: "Divide integers: find the sign: What is the sign of -8 ÷ (+2)?", choices: ["Negative", "Positive", "Zero", "Undefined"], answer: 0, hint: "The result is -4, which is negative.", emoji: "➗" },
+      { q: "Divide integers: What is +12 ÷ (-3)?", choices: ["-4", "+4", "-9", "+9"], answer: 0, hint: "Dividing a positive by a negative results in -4.", emoji: "➗" }
+    ]
+  },
 };
 
 // export default QUIZ_DATA; // optional

@@ -50,5 +50,102 @@
     ],
     "answer": 3,
     "explain": "A = d1*d2/2 = 10*24/2 = 120."
+  },
+  {
+    "id": 5,
+    "grade": 6,
+    "topic": "Operations with integers",
+    "questions": [
+      {
+        "q": "Add integers using counters: What is the sum of +3 and -5?",
+        "options": ["-2", "+2", "+8", "-8"],
+        "answer": 0,
+        "explain": "Using counters, +3 and -5 combine to -2."
+      },
+      {
+        "q": "Add integers using number lines: What is +4 + (-6)?",
+        "options": ["-2", "+2", "+10", "-10"],
+        "answer": 0,
+        "explain": "On a number line, move 4 units right and 6 units left to reach -2."
+      },
+      {
+        "q": "Add integers: What is -7 + (-3)?",
+        "options": ["-10", "+10", "-4", "+4"],
+        "answer": 0,
+        "explain": "Adding two negatives results in -10."
+      },
+      {
+        "q": "Subtract integers using counters: What is +5 - (+3)?",
+        "options": ["+2", "-2", "+8", "-8"],
+        "answer": 0,
+        "explain": "Using counters, +5 minus +3 leaves +2."
+      },
+      {
+        "q": "Subtract integers using number lines: What is -2 - (-4)?",
+        "options": ["+2", "-2", "+6", "-6"],
+        "answer": 0,
+        "explain": "On a number line, move 2 units left and 4 units right to reach +2."
+      },
+      {
+        "q": "Subtract integers: What is +6 - (-3)?",
+        "options": ["+9", "-9", "+3", "-3"],
+        "answer": 0,
+        "explain": "Subtracting a negative is equivalent to addition: +6 + 3 = +9."
+      },
+      {
+        "q": "Add and subtract integers: find the sign: What is the sign of -4 + (+2)?",
+        "options": ["Negative", "Positive", "Zero", "Undefined"],
+        "answer": 0,
+        "explain": "The result is -2, which is negative."
+      },
+      {
+        "q": "Add and subtract integers: word problems: If you owe $5 and earn $3, what is your balance?",
+        "options": ["-2", "+2", "+8", "-8"],
+        "answer": 0,
+        "explain": "Owing $5 and earning $3 results in a balance of -2."
+      },
+      {
+        "q": "Add and subtract integers: input/output tables: If input is -3 and output is +5, what is the operation?",
+        "options": ["Addition", "Subtraction", "Multiplication", "Division"],
+        "answer": 0,
+        "explain": "Adding +8 to -3 results in +5."
+      },
+      {
+        "q": "Add three or more integers: What is -2 + (+3) + (-4)?",
+        "options": ["-3", "+3", "+7", "-7"],
+        "answer": 0,
+        "explain": "Adding -2, +3, and -4 results in -3."
+      },
+      {
+        "q": "Understand multiplying by a negative integer using a number line: What is -3 × 2?",
+        "options": ["-6", "+6", "-9", "+9"],
+        "answer": 0,
+        "explain": "On a number line, moving 3 units left twice results in -6."
+      },
+      {
+        "q": "Multiply integers: find the sign: What is the sign of -4 × (+2)?",
+        "options": ["Negative", "Positive", "Zero", "Undefined"],
+        "answer": 0,
+        "explain": "The result is -8, which is negative."
+      },
+      {
+        "q": "Multiply integers: What is -7 × (-3)?",
+        "options": ["+21", "-21", "+10", "-10"],
+        "answer": 0,
+        "explain": "Multiplying two negatives results in +21."
+      },
+      {
+        "q": "Divide integers: find the sign: What is the sign of -8 ÷ (+2)?",
+        "options": ["Negative", "Positive", "Zero", "Undefined"],
+        "answer": 0,
+        "explain": "The result is -4, which is negative."
+      },
+      {
+        "q": "Divide integers: What is +12 ÷ (-3)?",
+        "options": ["-4", "+4", "-9", "+9"],
+        "answer": 0,
+        "explain": "Dividing a positive by a negative results in -4."
+      }
+    ]
   }
 ]
