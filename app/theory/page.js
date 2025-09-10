@@ -6,6 +6,7 @@ import DrawingCanvas from '../../components/DrawingCanvas';
 import KartMath from '../../components/KartMath';
 import Link from 'next/link';
 import DoesXSatisfyEquationTheory from '../../theory/DoesXSatisfyEquation';
+import AddingThreeOrMoreIntegersTheory from '../../components/AddingThreeOrMoreIntegersTheory';
 
 const theoryTopics = {
   1: [
@@ -47,6 +48,7 @@ const theoryTopics = {
     { name: 'Statistics', description: 'Analyze data sets', component: 'statistics' },
   ],
   7: [
+    { name: 'Adding Three or More Integers', description: 'Master adding multiple integers with properties and strategies', component: 'addingIntegers' },
     { name: 'Advanced Algebra', description: 'Solve complex equations', component: 'advancedalgebra' },
     { name: 'Geometry Proofs', description: 'Learn geometric reasoning', component: 'proofs' },
     { name: 'JMC Survival Kit', description: 'Olympiad math formulas and mini-tools', component: 'jmc' },
@@ -155,6 +157,8 @@ export default function TheoryPage() {
       topicComponent = <ParallelLinesTheory />;
     } else if (selectedTopic?.component === 'kartmath') {
       topicComponent = <KartMath />;
+    } else if (selectedTopic?.component === 'addingIntegers') {
+      topicComponent = <AddingThreeOrMoreIntegersTheory />;
     } else if (selectedTopic?.component === 'jmc') {
       topicComponent = (
         <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-cartoon p-6 text-center">

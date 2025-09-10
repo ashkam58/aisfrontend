@@ -4,6 +4,11 @@ import Link from 'next/link';
 import SubtractionAdventure from '../../components/SubtractionAdventure';
 import TypingGame from '../../components/TypingGame';
 import KartMath from '../../components/KartMath';
+import SkipCountingGame from '../../components/SkipCountingGame';
+import dynamic from 'next/dynamic';
+
+// Dynamically import the game component to avoid SSR issues
+const AddingThreeOrMoreIntegers = dynamic(() => import('../../components/addingThreeorMoreInterger'), { ssr: false });
 
 const games = [
 	{
@@ -53,6 +58,12 @@ const games = [
 const gamesTopics = {
 	1: [
 		{
+			name: 'Skip Counting Adventure',
+			description:
+				'Learn to count by 2s, 5s, and 10s with fun patterns and visual helpers!',
+			component: <SkipCountingGame />,
+		},
+		{
 			name: 'Subtraction Adventure',
 			description:
 				'Learn subtraction and find missing numbers with fun visuals!',
@@ -65,6 +76,14 @@ const gamesTopics = {
 			description:
 				'Does n satisfy the equation? Race to solve algebraic equations!',
 			component: <KartMath />,
+		},
+	],
+	7: [
+		{
+			name: 'Adding Three or More Integers',
+			description:
+				'Master adding multiple integers with interactive practice and adaptive learning!',
+			component: <AddingThreeOrMoreIntegers />,
 		},
 	],
 };
