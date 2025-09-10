@@ -1,10 +1,13 @@
 'use client';
+import { useState } from 'react';
 import dynamic from 'next/dynamic';
 
 const DimensionalMandala = dynamic(() => import('@/components/DimensionalMandala'), { ssr: false });
-const EnhancedWhiteboard = dynamic(() => import('@/components/EnhancedWhiteboard'), { ssr: false });
+const GeometryTeachingComponent = dynamic(() => import('@/components/GeometryTeachingComponent'), { ssr: false });
 
 export default function WhiteboardPage() {
+  const [showGeometryTeaching, setShowGeometryTeaching] = useState(false);
+
   return (
     <div className="space-y-4 sm:space-y-6">
       {/* Hero Section */}
@@ -18,11 +21,39 @@ export default function WhiteboardPage() {
           <span>📊 Coordinate Planes</span>
           <span>🔤 Math Annotations</span>
           <span>👥 Live Collaboration</span>
+          <span>🧮 Geometry Teaching</span>
         </div>
       </div>
 
-      {/* Enhanced Whiteboard */}
-      <EnhancedWhiteboard />
+      {/* Quick Access Tools */}
+      <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-4 border-2 border-purple-200">
+        <h3 className="text-lg font-bold text-purple-700 mb-3" style={{fontFamily: 'Fredoka One, cursive'}}>
+          🛠️ Quick Teaching Tools
+        </h3>
+        <div className="flex flex-wrap gap-3">
+          <button
+            onClick={() => setShowGeometryTeaching(true)}
+            className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white px-4 py-2 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg"
+            style={{fontFamily: 'Fredoka One, cursive'}}
+          >
+            📐 Geometry Studio
+          </button>
+          <button
+            className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white px-4 py-2 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg"
+            style={{fontFamily: 'Fredoka One, cursive'}}
+          >
+            📊 Coordinate Plane
+          </button>
+          <button
+            className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-4 py-2 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg"
+            style={{fontFamily: 'Fredoka One, cursive'}}
+          >
+            🔢 Math Symbols
+          </button>
+        </div>
+      </div>
+
+  {/* Enhanced Whiteboard removed - using Geometry Teaching Studio only */}
 
       {/* Dimensional Mandala Art */}
       <div className="rounded-2xl border border-purple-200 p-4 bg-white">
@@ -43,6 +74,7 @@ export default function WhiteboardPage() {
             <li>• Insert unit circle for trigonometry explanations</li>
             <li>• Draw step-by-step geometric proofs with arrows</li>
             <li>• Toggle presentation mode for clean student view</li>
+            <li>• Use Geometry Studio for interactive shape teaching</li>
           </ul>
         </div>
         <div className="rounded-2xl border border-green-200 bg-green-50/80 p-4">
@@ -55,6 +87,12 @@ export default function WhiteboardPage() {
           </ul>
         </div>
       </div>
+
+      {/* Geometry Teaching Component */}
+      <GeometryTeachingComponent
+        isActive={showGeometryTeaching}
+        onClose={() => setShowGeometryTeaching(false)}
+      />
     </div>
   );
 }

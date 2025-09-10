@@ -28,11 +28,11 @@ const CardContent = ({ className, children, ...props }) => (
 );
 
 const Button = ({ variant = "default", className, children, ...props }) => {
-  const baseClasses = "inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background";
+  const baseClasses = "inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background min-h-[44px] min-w-[44px] touch-manipulation";
   const variants = {
-    default: "bg-primary text-primary-foreground hover:bg-primary/90 h-10 py-2 px-4",
-    secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80 h-10 py-2 px-4",
-    outline: "border border-input hover:bg-accent hover:text-accent-foreground h-10 py-2 px-4"
+    default: "bg-primary text-primary-foreground hover:bg-primary/90 h-10 py-3 px-4",
+    secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80 h-10 py-3 px-4",
+    outline: "border border-input hover:bg-accent hover:text-accent-foreground h-10 py-3 px-4"
   };
   
   return (
@@ -387,23 +387,25 @@ export default function SumLab() {
     // <TooltipProvider>
       <div className="relative min-h-screen bg-gradient-to-b from-sky-50 via-indigo-50 to-emerald-50 text-slate-800">
         <AuroraBg />
-        <div className="relative max-w-6xl mx-auto px-4 py-8">
-          <header className="flex flex-wrap items-center justify-between gap-4 mb-6">
-            <div>
-              <h1 className="text-3xl md:text-4xl font-bold tracking-tight">SumLab · Add 3+ Integers</h1>
-              <p className="text-slate-600">Grade 7 • Adaptive practice • Calm visuals • Number-line reasoning</p>
+        <div className="relative max-w-6xl mx-auto px-2 sm:px-4 py-4 sm:py-8">
+          <header className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
+            <div className="w-full sm:w-auto">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight">SumLab · Add 3+ Integers</h1>
+              <p className="text-slate-600 text-sm sm:text-base">Grade 7 • Adaptive practice • Calm visuals • Number-line reasoning</p>
             </div>
-            <div className="flex items-center gap-6">
-              <Gauge value={smart} />
-              <div className="text-sm text-slate-600">
-                <div><span className="font-semibold">Level:</span> {level}</div>
-                <div><span className="font-semibold">Accuracy:</span> {accuracy}%</div>
-                <div><span className="font-semibold">Time:</span> {seconds}s</div>
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 w-full sm:w-auto">
+              <div className="flex items-center gap-4">
+                <Gauge value={smart} />
+                <div className="text-sm text-slate-600">
+                  <div><span className="font-semibold">Level:</span> {level}</div>
+                  <div><span className="font-semibold">Accuracy:</span> {accuracy}%</div>
+                  <div><span className="font-semibold">Time:</span> {seconds}s</div>
+                </div>
               </div>
             </div>
           </header>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-6">
             <Card className="backdrop-blur bg-white/70 shadow-lg">
               <CardHeader>
                 <CardTitle className="flex items-center justify-between">
@@ -444,7 +446,7 @@ export default function SumLab() {
                   <NumberLine addends={q.addends} />
 
                   {!typedMode ? (
-                    <div className="grid grid-cols-2 gap-3 pt-2">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
                       {q.choices.map((c, i) => {
                         const isSelected = selected === c;
                         const isCorrect = correct !== null && c === q.answer;
@@ -454,7 +456,7 @@ export default function SumLab() {
                             whileTap={{ scale: 0.98 }}
                             onClick={() => { setSelected(c); submit(c); }}
                             className={cn(
-                              "w-full rounded-2xl px-4 py-3 text-xl border transition",
+                              "w-full rounded-2xl px-4 py-4 text-lg sm:text-xl border transition min-h-[54px] touch-manipulation",
                               isCorrect ? "bg-emerald-100 border-emerald-300" :
                               correct === false && isSelected ? "bg-rose-100 border-rose-300" :
                               "bg-white/70 hover:bg-slate-50 border-slate-200"
@@ -466,9 +468,20 @@ export default function SumLab() {
                       })}
                     </div>
                   ) : (
-                    <div className="flex items-center gap-3 pt-2">
-                      <Input inputMode="numeric" value={typedAnswer} onChange={(e) => setTypedAnswer(e.target.value)} placeholder="Type your answer" className="text-lg" />
-                      <Button onClick={() => submit(Number(typedAnswer))} className="text-lg">Submit</Button>
+                    <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
+                      <Input 
+                        inputMode="numeric" 
+                        value={typedAnswer} 
+                        onChange={(e) => setTypedAnswer(e.target.value)} 
+                        placeholder="Type your answer" 
+                        className="text-lg min-h-[48px]" 
+                      />
+                      <Button 
+                        onClick={() => submit(Number(typedAnswer))} 
+                        className="text-lg min-h-[48px] px-6"
+                      >
+                        Submit
+                      </Button>
                     </div>
                   )}
 

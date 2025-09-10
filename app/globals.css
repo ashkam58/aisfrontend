@@ -2,14 +2,140 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Import fun Google fonts for cartoon feel */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Nunito:wght@300;400;600;700;800&display=swap');
+
 html, body {
   height: 100%;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  background: #FFE066;
-  background-image: url('/assets/cartoon-clouds-bg.svg');
-  background-repeat: repeat;
-  color: #5BC0EB;
+  font-family: 'Nunito', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  background: radial-gradient(ellipse at 60% 40%, #2b1055 0%, #7597de 40%, #1b1b2f 100%);
+  background-attachment: fixed;
+  background-image: none;
+  color: #2d3748;
   border-radius: 2rem;
+  overflow-x: hidden;
+}
+
+/* Cartoon styling classes */
+@layer components {
+  .font-cartoon {
+    font-family: 'Fredoka One', cursive;
+  }
+  
+  .rounded-cartoon {
+    border-radius: 1.5rem;
+  }
+  
+  .card-cartoon {
+    @apply bg-white rounded-cartoon shadow-2xl border-4 border-purple-200 hover:border-purple-400 transition-all duration-300 transform hover:scale-105;
+  }
+  
+  .btn-cartoon {
+    @apply font-cartoon text-white font-bold py-3 px-6 rounded-cartoon shadow-lg transform transition-all duration-200 hover:scale-105 active:scale-95;
+  }
+  
+  .btn-primary {
+    @apply btn-cartoon bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600;
+  }
+  
+  .btn-secondary {
+    @apply btn-cartoon bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600;
+  }
+  
+  .btn-success {
+    @apply btn-cartoon bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600;
+  }
+  
+  .btn-warning {
+    @apply btn-cartoon bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600;
+  }
+  
+  /* Mobile navigation scrollbar hide utility */
+  .scrollbar-hide {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;  /* Safari and Chrome */
+  }
+  
+  .text-cartoon-shadow {
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  }
+  
+  .bg-cartoon-gradient {
+    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+  }
+  
+  .bg-cartoon-blue {
+    background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+  }
+  
+  .bg-cartoon-green {
+    background: linear-gradient(135deg, #d299c2 0%, #fef9d7 100%);
+  }
+  
+  .bg-cartoon-purple {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-wiggle {
+    animation: wiggle 1s ease-in-out infinite;
+  }
+  
+  .animate-bounce-slow {
+    animation: bounce 2s infinite;
+  }
+  
+  .grid-cartoon {
+    @apply grid gap-6 p-6;
+  }
+  
+  .grade-card {
+    @apply card-cartoon p-6 text-center hover:shadow-3xl;
+  }
+  
+  .topic-card {
+    @apply bg-white rounded-cartoon p-4 shadow-lg border-2 border-dashed border-purple-300 hover:border-purple-500 transition-all duration-300 transform hover:scale-105;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes wiggle {
+  0%, 7% {
+    transform: rotateZ(0);
+  }
+  15% {
+    transform: rotateZ(-15deg);
+  }
+  20% {
+    transform: rotateZ(10deg);
+  }
+  25% {
+    transform: rotateZ(-10deg);
+  }
+  30% {
+    transform: rotateZ(6deg);
+  }
+  35% {
+    transform: rotateZ(-4deg);
+  }
+  40%, 100% {
+    transform: rotateZ(0);
+  }
 }
 
 .mandala-bg {
@@ -41,6 +167,10 @@ html, body {
   .gap-responsive {
     @apply gap-2 sm:gap-4 md:gap-6;
   }
+  
+  .shadow-3xl {
+    box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25);
+  }
 }
 
 /* Mobile-first canvas container */
@@ -50,21 +180,76 @@ html, body {
   -webkit-overflow-scrolling: touch;
 }
 
-/* Touch-friendly buttons */
+/* Touch-friendly buttons and mobile optimizations */
 @media (max-width: 640px) {
-  button {
+  button, .btn, [role="button"] {
+    min-height: 48px;
+    min-width: 48px;
+    touch-action: manipulation;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  
+  input, textarea, select {
+    font-size: 16px; /* Prevents zoom on iOS */
     min-height: 44px;
-    min-width: 44px;
+  }
+  
+  /* Improve spacing for mobile */
+  .grid {
+    gap: 0.75rem;
+  }
+  
+  .text-xl {
+    font-size: 1.125rem;
+  }
+  
+  .text-2xl {
+    font-size: 1.25rem;
+  }
+  
+  .text-3xl {
+    font-size: 1.5rem;
   }
 }
 
 /* Prevent horizontal scroll on mobile */
 body {
   overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Ensure content doesn't get too narrow */
 .min-touch-target {
-  min-height: 44px;
-  min-width: 44px;
+  min-height: 48px;
+  min-width: 48px;
+  touch-action: manipulation;
+}
+
+/* Cartoon background patterns */
+.bg-pattern-dots {
+  background-image: radial-gradient(circle, #ff6b6b 1px, transparent 1px);
+  background-size: 15px 15px;
+}
+
+.bg-pattern-stars {
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, #ff6b6b, transparent),
+    radial-gradient(2px 2px at 40px 70px, #4ecdc4, transparent),
+    radial-gradient(1px 1px at 90px 40px, #45b7d1, transparent);
+  background-repeat: repeat;
+  background-size: 80px 80px;
+}
+
+.galaxy-stars-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  width: 100vw;
+  height: 100vh;
+  background: url('/assets/stars.svg') repeat;
+  background-size: cover;
+  will-change: background-position;
 }

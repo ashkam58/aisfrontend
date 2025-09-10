@@ -59,31 +59,35 @@ const gamesTopics = {
 	1: [
 		{
 			name: 'Skip Counting Adventure',
-			description:
-				'Learn to count by 2s, 5s, and 10s with fun patterns and visual helpers!',
+			description: 'Learn to count by 2s, 5s, and 10s with fun patterns and visual helpers!',
 			component: <SkipCountingGame />,
+			emoji: '🦘',
+			color: 'from-green-200 to-emerald-300'
 		},
 		{
 			name: 'Subtraction Adventure',
-			description:
-				'Learn subtraction and find missing numbers with fun visuals!',
+			description: 'Learn subtraction and find missing numbers with fun visuals!',
 			component: <SubtractionAdventure />,
+			emoji: '🏴‍☠️',
+			color: 'from-red-200 to-pink-300'
 		},
 	],
 	6: [
 		{
 			name: 'Does x satisfy an equation?',
-			description:
-				'Does n satisfy the equation? Race to solve algebraic equations!',
+			description: 'Does n satisfy the equation? Race to solve algebraic equations!',
 			component: <KartMath />,
+			emoji: '🏎️',
+			color: 'from-blue-200 to-cyan-300'
 		},
 	],
 	7: [
 		{
 			name: 'Adding Three or More Integers',
-			description:
-				'Master adding multiple integers with interactive practice and adaptive learning!',
+			description: 'Master adding multiple integers with interactive practice and adaptive learning!',
 			component: <AddingThreeOrMoreIntegers />,
+			emoji: '🧮',
+			color: 'from-purple-200 to-violet-300'
 		},
 	],
 };
@@ -98,35 +102,38 @@ export default function GamesPage() {
 		<>
 			{/* Hide Game Arcade header and options when a specific game is selected */}
 			{!selectedGame && (
-				<div className="relative z-10 max-w-4xl mx-auto mt-6 sm:mt-8 md:mt-12 bg-white rounded-cartoon shadow-lg p-4 sm:p-6 md:p-8">
-					<div className="text-center mb-4 sm:mb-6">
-						<h1 className="text-2xl sm:text-3xl md:text-4xl font-cartoon text-purple-800">
-							🎮 Game Arcade
+				<div className="relative z-10 max-w-4xl mx-auto mt-2 sm:mt-4 md:mt-6 bg-white/90 backdrop-blur rounded-2xl sm:rounded-3xl shadow-2xl p-3 sm:p-4 md:p-6 border-2 sm:border-4 border-purple-200">
+					<div className="text-center mb-3 sm:mb-4 md:mb-6">
+						<div className="text-4xl sm:text-5xl md:text-6xl mb-2 sm:mb-4 animate-bounce">🎮</div>
+						<h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-purple-800 mb-1 sm:mb-2" style={{fontFamily: 'Fredoka One, cursive'}}>
+							Game Arcade
 						</h1>
-						<p className="text-purple-600 text-sm sm:text-base">
-							Playful challenges to sharpen your skills!
+						<p className="text-base sm:text-lg text-purple-600 font-medium">
+							🌟 Playful challenges to sharpen your skills! 🌟
 						</p>
 					</div>
 					{/* Button to open Typing Game */}
 					{!showTypingGame && (
-						<div className="mb-8 text-center">
+						<div className="mb-6 sm:mb-8 text-center">
 							<button
-								className="bg-blue-500 text-white px-6 py-3 rounded-cartoon font-cartoon text-lg shadow hover:bg-blue-600 transition"
+								className="bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-2xl sm:rounded-3xl font-bold text-base sm:text-lg shadow-lg transform transition-all duration-300 hover:scale-105 min-h-[48px]"
+								style={{fontFamily: 'Fredoka One, cursive'}}
 								onClick={() => setShowTypingGame(true)}
 							>
-								Play Typing Game 📝
+								📝 Play Typing Game
 							</button>
 						</div>
 					)}
 					{showTypingGame && (
-						<div className="mb-8">
-							<h2 className="text-xl font-cartoon text-purple-700 mb-2 text-center">
-								Typing Game
+						<div className="mb-6 sm:mb-8 bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 border-2 sm:border-4 border-blue-300 shadow-xl">
+							<h2 className="text-xl sm:text-2xl font-bold text-blue-800 mb-3 sm:mb-4 text-center" style={{fontFamily: 'Fredoka One, cursive'}}>
+								⌨️ Typing Game
 							</h2>
 							<TypingGame />
-							<div className="text-center mt-4">
+							<div className="text-center mt-3 sm:mt-4">
 								<button
-									className="bg-purple-500 text-white px-4 py-2 rounded-cartoon font-cartoon hover:bg-purple-600 text-sm"
+									className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-2xl sm:rounded-3xl font-bold transform transition-all duration-300 hover:scale-105 min-h-[48px]"
+									style={{fontFamily: 'Fredoka One, cursive'}}
 									onClick={() => setShowTypingGame(false)}
 								>
 									← Back to Game Arcade
@@ -137,33 +144,45 @@ export default function GamesPage() {
 				</div>
 			)}
 
-			<div className="relative z-10 max-w-4xl mx-auto mt-6 sm:mt-8 md:mt-12 bg-white rounded-cartoon shadow-lg p-4 sm:p-6 md:p-8">
+			<div className="relative z-10 max-w-4xl mx-auto mt-2 sm:mt-4 md:mt-6 bg-white/90 backdrop-blur rounded-2xl sm:rounded-3xl shadow-2xl p-3 sm:p-4 md:p-6 border-2 sm:border-4 border-green-200">
 				{/* Grade selection or game display */}
 				{!selectedGrade ? (
 					<div>
-						<h2 className="text-xl sm:text-2xl font-cartoon text-purple-700 mb-4 sm:mb-6 text-center">
-							Select Your Grade ✨
-						</h2>
-						<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
-							{availableGrades.map((grade) => (
+						<div className="text-center mb-6 sm:mb-8">
+							<div className="text-6xl sm:text-7xl md:text-8xl mb-4 animate-bounce">�</div>
+							<h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-green-800 mb-2" style={{fontFamily: 'Fredoka One, cursive'}}>
+								🎯 Select Your Grade Level 🎯
+							</h2>
+							<p className="text-base sm:text-lg md:text-xl text-green-600 font-medium">Choose your grade to play amazing learning games! ✨</p>
+						</div>
+						<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
+							{[
+								{ grade: 1, emoji: '🌱', color: 'from-green-100 via-lime-100 to-emerald-100', hoverColor: 'hover:from-green-200 hover:via-lime-200 hover:to-emerald-200' },
+								{ grade: 6, emoji: '🏆', color: 'from-amber-100 via-yellow-100 to-lime-100', hoverColor: 'hover:from-amber-200 hover:via-yellow-200 hover:to-lime-200' },
+								{ grade: 7, emoji: '🧮', color: 'from-teal-100 via-cyan-100 to-blue-100', hoverColor: 'hover:from-teal-200 hover:via-cyan-200 hover:to-blue-200' }
+							].filter(gradeData => availableGrades.includes(gradeData.grade)).map((gradeData) => (
 								<button
-									key={grade}
-									className="bg-gradient-to-br from-purple-100 to-pink-100 hover:from-purple-200 hover:to-pink-200 text-purple-700 font-cartoon text-lg sm:text-xl p-4 sm:p-6 rounded-cartoon transition shadow-md"
-									onClick={() => setSelectedGrade(grade)}
+									key={gradeData.grade}
+									className={`group bg-gradient-to-br ${gradeData.color} ${gradeData.hoverColor} text-green-700 font-bold text-lg sm:text-xl p-6 sm:p-8 rounded-3xl transition-all duration-300 transform hover:scale-105 hover:-rotate-1 shadow-lg hover:shadow-2xl border-4 border-green-200 hover:border-green-400 min-h-[120px] touch-manipulation`}
+									onClick={() => setSelectedGrade(gradeData.grade)}
+									style={{fontFamily: 'Fredoka One, cursive'}}
 								>
-									Grade {grade} 🎈
+									<div className="text-4xl sm:text-5xl mb-2 group-hover:animate-bounce transition-all duration-300">{gradeData.emoji}</div>
+									<div className="text-xl sm:text-2xl group-hover:text-green-800 transition-colors">Grade {gradeData.grade}</div>
+									<div className="text-xs sm:text-sm text-green-500 mt-1 opacity-75 group-hover:opacity-100">Click to play!</div>
 								</button>
 							))}
 						</div>
 					</div>
 				) : !selectedGame ? (
 					<div>
-						<div className="flex items-center justify-between mb-4 sm:mb-6">
-							<h2 className="text-xl sm:text-2xl font-cartoon text-purple-700 text-center flex-1">
-								Grade {selectedGrade} Games 🎯
+						<div className="flex flex-col sm:flex-row items-center justify-between mb-6 sm:mb-8 gap-4">
+							<h2 className="text-2xl sm:text-3xl font-bold text-green-700 text-center" style={{fontFamily: 'Fredoka One, cursive'}}>
+								🎮 Grade {selectedGrade} Game Zone �
 							</h2>
 							<button
-								className="bg-purple-500 text-white px-3 sm:px-4 py-2 rounded-cartoon font-cartoon hover:bg-purple-600 text-sm sm:text-base"
+								className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white px-6 py-3 rounded-3xl font-bold text-sm sm:text-base transition-all duration-300 transform hover:scale-105 shadow-lg"
+								style={{fontFamily: 'Fredoka One, cursive'}}
 								onClick={() => setSelectedGrade(null)}
 							>
 								← Back to Grades
@@ -171,43 +190,63 @@ export default function GamesPage() {
 						</div>
 						{Array.isArray(gamesTopics[selectedGrade]) &&
 						gamesTopics[selectedGrade].length > 0 ? (
-							<div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4">
+							<div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
 								{gamesTopics[selectedGrade].map((game) => (
 									<div
 										key={game.name}
-										className="bg-gradient-to-br from-purple-50 to-blue-50 p-4 sm:p-6 rounded-cartoon shadow-md hover:shadow-lg transition cursor-pointer border border-purple-200"
+										className={`group bg-gradient-to-br ${game.color} p-6 sm:p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer border-4 border-white hover:border-green-300 transform hover:scale-105 hover:-rotate-1`}
 										onClick={() => setSelectedGame(game)}
 									>
-										<h3 className="text-lg sm:text-xl font-cartoon text-purple-700 mb-2">
-											{game.name} 🕹️
-										</h3>
-										<p className="text-purple-600 text-sm sm:text-base">
-											{game.description}
-										</p>
+										<div className="flex items-start gap-4">
+											<div className="text-4xl sm:text-5xl group-hover:animate-bounce transition-all duration-300 flex-shrink-0">
+												{game.emoji}
+											</div>
+											<div className="flex-1">
+												<h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2 group-hover:text-green-800 transition-colors" style={{fontFamily: 'Fredoka One, cursive'}}>
+													{game.name}
+												</h3>
+												<p className="text-gray-700 text-sm sm:text-base leading-relaxed group-hover:text-gray-800 transition-colors">
+													{game.description}
+												</p>
+												<div className="mt-3 inline-flex items-center text-xs sm:text-sm font-medium text-green-600 bg-white/70 px-3 py-1 rounded-full group-hover:bg-white group-hover:text-green-700 transition-all">
+													🎮 Start Playing
+												</div>
+											</div>
+										</div>
 									</div>
 								))}
 							</div>
 						) : (
-							<div className="text-center text-purple-600 text-sm sm:text-base">
-								No games available for Grade {selectedGrade} yet.
+							<div className="text-center bg-gradient-to-br from-yellow-100 to-orange-100 p-8 rounded-3xl border-4 border-yellow-200">
+								<div className="text-6xl mb-4">🚧</div>
+								<h3 className="text-xl font-bold text-yellow-800 mb-2" style={{fontFamily: 'Fredoka One, cursive'}}>Coming Soon!</h3>
+								<p className="text-yellow-600">Exciting games for Grade {selectedGrade} are being prepared! Check back soon for awesome learning adventures! 🌟</p>
 							</div>
 						)}
 					</div>
 				) : (
 					<div>
-						<h2 className="text-xl sm:text-2xl font-cartoon text-purple-700 mb-4 sm:mb-6 text-center">
-							{selectedGame.name} 🧠
-						</h2>
-						<div className="mb-4">{selectedGame.component}</div>
-						<div className="flex flex-col sm:flex-row justify-center items-center gap-3">
+						<div className="text-center mb-6">
+							<div className="text-5xl mb-4 animate-bounce">{selectedGame.emoji}</div>
+							<h2 className="text-2xl sm:text-3xl font-bold text-green-800 mb-4" style={{fontFamily: 'Fredoka One, cursive'}}>
+								{selectedGame.name}
+							</h2>
+							<p className="text-green-600 text-lg mb-6">{selectedGame.description}</p>
+						</div>
+						<div className="mb-6 bg-gradient-to-br from-white/90 to-gray-50/90 rounded-3xl p-4 border-4 border-green-200">
+							{selectedGame.component}
+						</div>
+						<div className="flex flex-col sm:flex-row justify-center items-center gap-4">
 							<button
-								className="bg-purple-500 text-white px-3 sm:px-4 py-2 rounded-cartoon font-cartoon hover:bg-purple-600 text-sm sm:text-base"
+								className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white px-6 py-3 rounded-3xl font-bold text-sm sm:text-base transition-all duration-300 transform hover:scale-105 shadow-lg"
+								style={{fontFamily: 'Fredoka One, cursive'}}
 								onClick={() => setSelectedGame(null)}
 							>
 								← Back to Games
 							</button>
 							<button
-								className="bg-blue-500 text-white px-3 sm:px-4 py-2 rounded-cartoon font-cartoon hover:bg-blue-600 text-sm sm:text-base"
+								className="bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white px-6 py-3 rounded-3xl font-bold text-sm sm:text-base transition-all duration-300 transform hover:scale-105 shadow-lg"
+								style={{fontFamily: 'Fredoka One, cursive'}}
 								onClick={() => {
 									setSelectedGame(null);
 									setSelectedGrade(null);
