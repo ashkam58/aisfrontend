@@ -2,6 +2,11 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import RegisterForm from '@/components/RegisterForm';
+import LoginForm from '@/components/LoginForm';
+import PaymentWrapper from '@/components/PaymentForm';
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 
 /**
  * Ultimate EdTech — Conversion‑Focused Landing Page
@@ -84,6 +89,27 @@ export default function HomePage() {
       a: 'Absolutely. We map strengths, set weekly goals, and adapt difficulty. Parents get simple, honest progress reports.',
     },
   ];
+
+  const [user, setUser] = useState(null);
+  const [subscriptionStatus, setSubscriptionStatus] = useState('inactive');
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      axios
+        .get('/user', { headers: { Authorization: `Bearer ${token}` } })
+        .then((response) => {
+          setUser(response.data.user);
+          setSubscriptionStatus(response.data.user.subscriptionStatus);
+        })
+        .catch(() => {
+          setUser(null);
+          setSubscriptionStatus('inactive');
+        });
+    }
+  }, []);
+
+  const userId = 'exampleUserId'; // Replace with actual user ID logic
 
   return (
     <main className="relative overflow-x-clip">
@@ -373,6 +399,43 @@ export default function HomePage() {
       >
         💬
       </Link>
+
+      {/* --- Registration, Login, and Payment Forms --- */}
+      <div className="main-page mx-auto max-w-7xl px-4 py-10">
+        <h1 className="text-3xl md:text-4xl font-extrabold text-purple-900 mb-6">Welcome to Intelligent Studios</h1>
+        <div className="forms space-y-6">
+          {!user ? (
+            <div className="content">
+              <h2>Explore Our Features</h2>
+              <p>Enjoy access to most of our content for free!</p>
+              <div className="partial-content">
+                <p>Here are some amazing features you can try:</p>
+                <ul>
+                  <li>Interactive quizzes</li>
+                  <li>Educational games</li>
+                  <li>Math tutorials</li>
+                </ul>
+                <p>Sign up to unlock advanced features like personalized dashboards and premium content!</p>
+              </div>
+              <div className="forms">
+                <RegisterForm />
+                <LoginForm />
+              </div>
+            </div>
+          ) : subscriptionStatus === 'active' ? (
+            <div className="content">
+              <h2>Full Access</h2>
+              <p>You have access to all features!</p>
+            </div>
+          ) : (
+            <div className="content">
+              <h2>Partial Access</h2>
+              <p>Subscribe to unlock full features.</p>
+              <PaymentWrapper userId={user._id} />
+            </div>
+          )}
+        </div>
+      </div>
     </main>
   );
 }

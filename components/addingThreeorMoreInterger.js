@@ -1,6 +1,7 @@
 'use client';
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import './addingThreeorMoreInterger.css'; // Add custom styles for vibrant theme
 
 // Since shadcn/ui components are not available, we'll create simple replacements
 const Card = ({ className, children, ...props }) => (
