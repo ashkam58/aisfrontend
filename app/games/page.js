@@ -53,6 +53,12 @@ const games = [
 		grades: [6, 7, 8, 9],
 		path: '/jmc',
 	},
+	{
+		name: 'Subtract Integers (IXL B.6)',
+		description: 'Comic-style game for practicing integer subtraction with counters!',
+		grades: [7],
+		path: '/games/subtract-integers-b6',
+	},
 ];
 
 const gamesTopics = {
@@ -82,6 +88,13 @@ const gamesTopics = {
 		},
 	],
 	7: [
+		{
+			name: 'Subtract Integers (IXL B.6)',
+			description: 'Comic-style game for practicing integer subtraction with counters!',
+			path: '/games/subtract-integers-b6',
+			emoji: '🦸‍♂️',
+			color: 'from-pink-200 to-yellow-300'
+		},
 		{
 			name: 'Adding Three or More Integers',
 			description: 'Master adding multiple integers with interactive practice and adaptive learning!',
@@ -195,7 +208,13 @@ export default function GamesPage() {
 									<div
 										key={game.name}
 										className={`group bg-gradient-to-br ${game.color} p-6 sm:p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer border-4 border-white hover:border-green-300 transform hover:scale-105 hover:-rotate-1`}
-										onClick={() => setSelectedGame(game)}
+										onClick={() => {
+											if (game.path) {
+												window.location.href = game.path;
+											} else {
+												setSelectedGame(game);
+											}
+										}}
 									>
 										<div className="flex items-start gap-4">
 											<div className="text-4xl sm:text-5xl group-hover:animate-bounce transition-all duration-300 flex-shrink-0">

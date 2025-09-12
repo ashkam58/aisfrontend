@@ -51,9 +51,11 @@ const theoryTopics = {
   7: [
     { name: 'Two-dimensional Figures', description: 'Theory and interactive practice on polygons, triangles, quadrilaterals, circles!', component: 'twoDimFigures', emoji: '🔷', color: 'from-indigo-200 to-purple-300' },
     { name: 'Adding Three or More Integers', description: 'Master adding multiple integers with properties and strategies!', component: 'addingIntegers', emoji: '🧠', color: 'from-cyan-200 to-blue-300' },
+    { name: 'Statistics', description: 'Analyze data sets, mean, median, mode, and more for grade 7!', component: 'statistics7', emoji: '📊', color: 'from-pink-200 to-fuchsia-300' },
     { name: 'Advanced Algebra', description: 'Solve complex equations like a mathematician!', component: 'advancedalgebra', emoji: '🎯', color: 'from-rose-200 to-pink-300' },
     { name: 'Geometry Proofs', description: 'Learn geometric reasoning and proofs!', component: 'proofs', emoji: '📐', color: 'from-lime-200 to-green-300' },
     { name: 'JMC Survival Kit', description: 'Olympiad math formulas and mini-tools!', component: 'jmc', emoji: '🏆', color: 'from-amber-200 to-yellow-300' },
+    { name: 'Subtract Integers (IXL B.6)', description: 'Comic-style guide to subtracting integers with counters!', component: 'subtract-integers-b6', emoji: '🦸‍♂️', color: 'from-pink-200 to-yellow-300', path: '/theory/subtract-integers-b6' },
   ],
   8: [
     { name: 'Functions', description: 'Understand mathematical functions and graphs!', component: 'functions', emoji: '📊', color: 'from-emerald-200 to-teal-300' },
@@ -129,6 +131,12 @@ export default function TheoryPage() {
       );
     } else if (selectedTopic?.component === 'doesXSatisfyEquation') {
       topicComponent = <DoesXSatisfyEquationTheory />;
+    } else if (selectedTopic?.component === 'subtract-integers-b6') {
+      const IntegerCarnival = require('./subtract-integers-b6').default;
+      topicComponent = <IntegerCarnival />;
+    } else if (selectedTopic?.component === 'statistics7') {
+      const StemLeaf = require('../../components/stemleaf').default;
+      topicComponent = <StemLeaf />;
     } else {
       topicComponent = (
         <div className="bg-purple-50 rounded-cartoon p-6 text-center">
