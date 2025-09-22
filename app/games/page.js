@@ -5,6 +5,7 @@ import SubtractionAdventure from '../../components/SubtractionAdventure';
 import TypingGame from '../../components/TypingGame';
 import KartMath from '../../components/KartMath';
 import SkipCountingGame from '../../components/SkipCountingGame';
+import ArcadeBrainGame from '../../components/ArcadeBrainGame';
 import dynamic from 'next/dynamic';
 
 // Dynamically import the game component to avoid SSR issues
@@ -36,6 +37,12 @@ const games = [
 		path: '/games/words',
 	},
 	{
+		name: 'Rigid Motion Rescue',
+		description: 'Cartoon geometry transformations for grade 9.',
+		grades: [9],
+		path: '/math/geometry/cartoon-transformations',
+	},
+	{
 		name: 'Shape Sorter',
 		description: 'Sort shapes by properties',
 		grades: [1, 2, 3],
@@ -46,12 +53,6 @@ const games = [
 		description: 'Learn fractions visually',
 		grades: [3, 4, 5, 6],
 		path: '/games/fractions',
-	},
-	{
-		name: 'JMC Survival Kit',
-		description: 'Olympiad math formulas and mini-tools',
-		grades: [6, 7, 8, 9],
-		path: '/jmc',
 	},
 	{
 		name: 'Subtract Integers (IXL B.6)',
@@ -78,6 +79,16 @@ const gamesTopics = {
 			color: 'from-red-200 to-pink-300'
 		},
 	],
+	// Add ArcadeBrainGame to all lower grades as an inline playable component
+	2: [
+		{
+			name: 'Arcade Brain',
+			description: 'Quick pattern, memory & math arcade — fun and brain sharpening for all ages.',
+			component: <ArcadeBrainGame />,
+			emoji: '🧠',
+			color: 'from-indigo-200 to-cyan-300'
+		}
+	],
 	6: [
 		{
 			name: 'Does x satisfy an equation?',
@@ -86,6 +97,15 @@ const gamesTopics = {
 			emoji: '🏎️',
 			color: 'from-blue-200 to-cyan-300'
 		},
+	],
+	3: [
+		{
+			name: 'Arcade Brain',
+			description: 'Quick pattern, memory & math arcade — fun and brain sharpening for all ages.',
+			component: <ArcadeBrainGame />,
+			emoji: '🧠',
+			color: 'from-indigo-200 to-cyan-300'
+		}
 	],
 	7: [
 		{
@@ -103,6 +123,41 @@ const gamesTopics = {
 			color: 'from-purple-200 to-violet-300'
 		},
 	],
+	4: [
+		{
+			name: 'Arcade Brain',
+			description: 'Quick pattern, memory & math arcade — fun and brain sharpening for all ages.',
+			component: <ArcadeBrainGame />,
+			emoji: '🧠',
+			color: 'from-indigo-200 to-cyan-300'
+		}
+	],
+	5: [
+		{
+			name: 'Arcade Brain',
+			description: 'Quick pattern, memory & math arcade — fun and brain sharpening for all ages.',
+			component: <ArcadeBrainGame />,
+			emoji: '🧠',
+			color: 'from-indigo-200 to-cyan-300'
+		}
+	],
+	9: [
+		{
+			name: 'Rigid Motion Rescue',
+			description: 'Cartoon geometry transformations for grade 9.',
+			path: '/math/geometry/cartoon-transformations',
+			emoji: '📐',
+			color: 'from-indigo-200 to-purple-300'
+		}
+		,
+		{
+			name: 'Arcade Brain',
+			description: 'Quick pattern, memory & math arcade — fun and brain sharpening for all ages.',
+			component: <ArcadeBrainGame />,
+			emoji: '🧠',
+			color: 'from-indigo-200 to-cyan-300'
+		}
+	],
 };
 
 export default function GamesPage() {
@@ -113,49 +168,7 @@ export default function GamesPage() {
 
 	return (
 		<>
-			{/* Hide Game Arcade header and options when a specific game is selected */}
-			{!selectedGame && (
-				<div className="relative z-10 max-w-4xl mx-auto mt-2 sm:mt-4 md:mt-6 bg-white/90 backdrop-blur rounded-2xl sm:rounded-3xl shadow-2xl p-3 sm:p-4 md:p-6 border-2 sm:border-4 border-purple-200">
-					<div className="text-center mb-3 sm:mb-4 md:mb-6">
-						<div className="text-4xl sm:text-5xl md:text-6xl mb-2 sm:mb-4 animate-bounce">🎮</div>
-						<h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-purple-800 mb-1 sm:mb-2" style={{fontFamily: 'Fredoka One, cursive'}}>
-							Game Arcade
-						</h1>
-						<p className="text-base sm:text-lg text-purple-600 font-medium">
-							🌟 Playful challenges to sharpen your skills! 🌟
-						</p>
-					</div>
-					{/* Button to open Typing Game */}
-					{!showTypingGame && (
-						<div className="mb-6 sm:mb-8 text-center">
-							<button
-								className="bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-2xl sm:rounded-3xl font-bold text-base sm:text-lg shadow-lg transform transition-all duration-300 hover:scale-105 min-h-[48px]"
-								style={{fontFamily: 'Fredoka One, cursive'}}
-								onClick={() => setShowTypingGame(true)}
-							>
-								📝 Play Typing Game
-							</button>
-						</div>
-					)}
-					{showTypingGame && (
-						<div className="mb-6 sm:mb-8 bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 border-2 sm:border-4 border-blue-300 shadow-xl">
-							<h2 className="text-xl sm:text-2xl font-bold text-blue-800 mb-3 sm:mb-4 text-center" style={{fontFamily: 'Fredoka One, cursive'}}>
-								⌨️ Typing Game
-							</h2>
-							<TypingGame />
-							<div className="text-center mt-3 sm:mt-4">
-								<button
-									className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-2xl sm:rounded-3xl font-bold transform transition-all duration-300 hover:scale-105 min-h-[48px]"
-									style={{fontFamily: 'Fredoka One, cursive'}}
-									onClick={() => setShowTypingGame(false)}
-								>
-									← Back to Game Arcade
-								</button>
-							</div>
-						</div>
-					)}
-				</div>
-			)}
+			{/* Global arcade header removed per request; games will be shown per-grade only */}
 
 			<div className="relative z-10 max-w-4xl mx-auto mt-2 sm:mt-4 md:mt-6 bg-white/90 backdrop-blur rounded-2xl sm:rounded-3xl shadow-2xl p-3 sm:p-4 md:p-6 border-2 sm:border-4 border-green-200">
 				{/* Grade selection or game display */}
@@ -172,7 +185,8 @@ export default function GamesPage() {
 							{[
 								{ grade: 1, emoji: '🌱', color: 'from-green-100 via-lime-100 to-emerald-100', hoverColor: 'hover:from-green-200 hover:via-lime-200 hover:to-emerald-200' },
 								{ grade: 6, emoji: '🏆', color: 'from-amber-100 via-yellow-100 to-lime-100', hoverColor: 'hover:from-amber-200 hover:via-yellow-200 hover:to-lime-200' },
-								{ grade: 7, emoji: '🧮', color: 'from-teal-100 via-cyan-100 to-blue-100', hoverColor: 'hover:from-teal-200 hover:via-cyan-200 hover:to-blue-200' }
+								{ grade: 7, emoji: '🧮', color: 'from-teal-100 via-cyan-100 to-blue-100', hoverColor: 'hover:from-teal-200 hover:via-cyan-200 hover:to-blue-200' },
+								{ grade: 9, emoji: '📐', color: 'from-indigo-100 via-purple-100 to-pink-100', hoverColor: 'hover:from-indigo-200 hover:via-purple-200 hover:to-pink-200' }
 							].filter(gradeData => availableGrades.includes(gradeData.grade)).map((gradeData) => (
 								<button
 									key={gradeData.grade}

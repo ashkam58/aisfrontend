@@ -1,0 +1,15 @@
+[
+  {
+    "id": 1,
+    "topic": "remainders",
+    "q": "Find the smallest n such that n \u2261 2 (mod 3) and n \u2261 2 (mod 4).",
+    "options": [
+      "2",
+      "6",
+      "8",
+      "14"
+    ],
+    "answer": 0,
+    "explain": "Same remainder \u21d2 n \u2261 2 (mod lcm(3,4)) \u21d2 n \u2261 2 (mod 12). Smallest is 2."
+  }
+]

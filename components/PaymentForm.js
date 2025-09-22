@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import axios from 'axios';
 
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
+// Do NOT call loadStripe during SSR or with an undefined key — that can cause the Stripe bundle
+// to attempt string operations on undefined (reading .match), which throws.
+const stripeKey = process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY;
 
 const PaymentForm = ({ userId }) => {
   const stripe = useStripe();
@@ -45,10 +47,21 @@ const PaymentForm = ({ userId }) => {
   );
 };
 
-const PaymentWrapper = ({ userId }) => (
-  <Elements stripe={stripePromise}>
-    <PaymentForm userId={userId} />
-  </Elements>
-);
+const PaymentWrapper = ({ userId }) => {
+  const [stripePromise, setStripePromise] = useState(null);
+
+  useEffect(() => {
+    // initialize on client only when a key is available
+    if (typeof window !== 'undefined' && stripeKey) {
+      setStripePromise(loadStripe(stripeKey));
+    }
+  }, []);
+
+  return (
+    <Elements stripe={stripePromise}>
+      <PaymentForm userId={userId} />
+    </Elements>
+  );
+};
 
 export default PaymentWrapper;

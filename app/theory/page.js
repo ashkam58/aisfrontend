@@ -6,6 +6,7 @@ import DrawingOverlay from '../../components/DrawingOverlay';
 import KartMath from '../../components/KartMath';
 import Link from 'next/link';
 import DoesXSatisfyEquationTheory from '../../theory/DoesXSatisfyEquation';
+import RigidMotionTheory from '../../components/RigidMotionTheory';
 import AddingThreeOrMoreIntegersTheory from '../../components/AddingThreeOrMoreIntegersTheory';
 import TwoDFiguresLab from '../../components/twoDimensionalFigures';
 
@@ -54,18 +55,16 @@ const theoryTopics = {
     { name: 'Statistics', description: 'Analyze data sets, mean, median, mode, and more for grade 7!', component: 'statistics7', emoji: '📊', color: 'from-pink-200 to-fuchsia-300' },
     { name: 'Advanced Algebra', description: 'Solve complex equations like a mathematician!', component: 'advancedalgebra', emoji: '🎯', color: 'from-rose-200 to-pink-300' },
     { name: 'Geometry Proofs', description: 'Learn geometric reasoning and proofs!', component: 'proofs', emoji: '📐', color: 'from-lime-200 to-green-300' },
-    { name: 'JMC Survival Kit', description: 'Olympiad math formulas and mini-tools!', component: 'jmc', emoji: '🏆', color: 'from-amber-200 to-yellow-300' },
     { name: 'Subtract Integers (IXL B.6)', description: 'Comic-style guide to subtracting integers with counters!', component: 'subtract-integers-b6', emoji: '🦸‍♂️', color: 'from-pink-200 to-yellow-300', path: '/theory/subtract-integers-b6' },
   ],
   8: [
     { name: 'Functions', description: 'Understand mathematical functions and graphs!', component: 'functions', emoji: '📊', color: 'from-emerald-200 to-teal-300' },
     { name: 'Quadratic Equations', description: 'Solve quadratic problems with confidence!', component: 'quadratics', emoji: '⚡', color: 'from-violet-200 to-purple-300' },
-    { name: 'JMC Survival Kit', description: 'Olympiad math formulas and mini-tools!', component: 'jmc', emoji: '🏆', color: 'from-amber-200 to-yellow-300' },
   ],
   9: [
     { name: 'Polynomials', description: 'Work with polynomial expressions!', component: 'polynomials', emoji: '🌟', color: 'from-fuchsia-200 to-pink-300' },
     { name: 'Trigonometry Basics', description: 'Introduction to trig functions!', component: 'trigonometry', emoji: '📐', color: 'from-sky-200 to-blue-300' },
-    { name: 'JMC Survival Kit', description: 'Olympiad math formulas and mini-tools!', component: 'jmc', emoji: '🏆', color: 'from-amber-200 to-yellow-300' },
+    { name: 'Rigid Motions & Dilations', description: 'Understand rigid motions (rotation, translation, reflection) and dilations for congruence and similarity proofs.', component: 'rigidMotion', emoji: '📐', color: 'from-indigo-200 to-purple-300' },
   ],
 };
 
@@ -90,47 +89,15 @@ export default function TheoryPage() {
       topicComponent = <TwoDFiguresLab />;
     } else if (selectedTopic?.component === 'jmc') {
       topicComponent = (
-        <div className="bg-gradient-to-br from-purple-100 via-pink-50 to-blue-100 rounded-3xl p-8 text-center border-4 border-purple-300 shadow-2xl">
-          <div className="text-6xl mb-4 animate-bounce">🏆</div>
-          <h4 className="text-3xl font-bold text-purple-800 mb-4" style={{fontFamily: 'Fredoka One, cursive'}}>JMC 2024 Survival Kit</h4>
-          <p className="text-lg text-purple-600 mb-6">Complete Olympiad math toolkit with formulas, mini-tools, and practice drills!</p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Link 
-              href="/jmc" 
-              className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-8 py-4 rounded-2xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg"
-              style={{fontFamily: 'Fredoka One, cursive'}}
-            >
-              🚀 Open Full Survival Kit
-            </Link>
-            <Link 
-              href="/jmc2024/index.html" 
-              className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-xl font-bold transition-colors shadow-lg"
-            >
-              🧮 Mini Calculator Tool
-            </Link>
-          </div>
-          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-left">
-            <div className="bg-white/80 rounded-lg p-4">
-              <h5 className="font-bold text-purple-700 mb-2">📐 Geometry</h5>
-              <p className="text-sm text-purple-600">Interior angles, area formulas, Pythagoras</p>
-            </div>
-            <div className="bg-white/80 rounded-lg p-4">
-              <h5 className="font-bold text-purple-700 mb-2">🔢 Numbers</h5>
-              <p className="text-sm text-purple-600">BODMAS, parity, remainders, divisibility</p>
-            </div>
-            <div className="bg-white/80 rounded-lg p-4">
-              <h5 className="font-bold text-purple-700 mb-2">🎯 Combinatorics</h5>
-              <p className="text-sm text-purple-600">Grid paths, probability, inclusion-exclusion</p>
-            </div>
-            <div className="bg-white/80 rounded-lg p-4">
-              <h5 className="font-bold text-purple-700 mb-2">🧠 Logic</h5>
-              <p className="text-sm text-purple-600">Knights/Knaves, word problems, ratios</p>
-            </div>
-          </div>
+        <div className="bg-white rounded-2xl p-6 border shadow-sm text-center">
+          <h4 className="text-2xl font-bold text-purple-800">JMC Content Removed</h4>
+          <p className="mt-2 text-sm text-purple-600">This content has been removed from the site. Restore from git history if needed.</p>
         </div>
       );
     } else if (selectedTopic?.component === 'doesXSatisfyEquation') {
       topicComponent = <DoesXSatisfyEquationTheory />;
+    } else if (selectedTopic?.component === 'rigidMotion') {
+      topicComponent = <RigidMotionTheory />;
     } else if (selectedTopic?.component === 'subtract-integers-b6') {
       const IntegerCarnival = require('./subtract-integers-b6').default;
       topicComponent = <IntegerCarnival />;

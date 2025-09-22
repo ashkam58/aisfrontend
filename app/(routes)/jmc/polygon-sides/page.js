@@ -158,9 +158,10 @@ const JMCPolygonSidesExplainer = () => {
         </div>
 
         <div className="text-center mt-12">
-          <Link href="/jmc" className="text-blue-600 hover:text-blue-800 hover:underline font-semibold">
-            &larr; Back to JMC Survival Kit
+          <Link href="/theory" className="text-blue-600 hover:text-blue-800 hover:underline font-semibold">
+            &larr; Back to Theory
           </Link>
+          <div className="mt-4 text-sm text-gray-600">Note: this JMC route has been archived; the JMC section was removed from navigation.</div>
         </div>
       </div>
     </div>
